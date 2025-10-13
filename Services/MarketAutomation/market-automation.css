@@ -1,197 +1,264 @@
+/* ------------------ Base ------------------ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
 }
 
 body {
+  font-family: "Poppins", sans-serif;
+  background: #f9fafc;
   color: #333;
   line-height: 1.6;
-  background-color: #f9fafb;
+  font-size: 16px;
+  padding-top: 80px; /* Ensure content doesn’t overlap with header */
 }
 
-/* Container */
+img {
+  max-width: 100%;
+  border-radius: 12px;
+  display: block;
+}
+
 .container {
   width: 90%;
-  max-width: 1100px;
+  max-width: 1150px;
   margin: 0 auto;
+  padding: 0 15px; /* To make it more flexible */
 }
 
-/* Hero Section */
+/* ------------------ Buttons ------------------ */
+.btn-primary {
+  display: inline-block;
+  padding: 14px 30px;
+  background: #00b57a;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 181, 122, 0.2);
+}
+
+.btn-primary:hover {
+  background: #009466;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 181, 122, 0.4);
+}
+
+/* ------------------ Hero ------------------ */
 .hero {
-  background: linear-gradient(135deg, #e5f6ee, #dff5fc);
-  padding: 80px 0;
+  background: linear-gradient(135deg, #e8fff6, #f5f9ff);
+  padding: 100px 0;
+  position: relative;
 }
 
-.hero-content {
+.hero-wrapper {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 30px;
+  gap: 60px;
+  flex-wrap: wrap;
 }
 
 .hero-text {
   flex: 1;
-  min-width: 300px;
+  min-width: 320px;
 }
 
 .hero-text h1 {
-  font-size: 2rem;
+  font-size: 3rem;
+  font-weight: 700;
   margin-bottom: 20px;
+  color: #222;
 }
 
 .hero-text span {
-  color: #32a071;
+  color: #00b57a;
 }
 
 .hero-text p {
-  margin-bottom: 25px;
+  font-size: 1.1rem;
   color: #555;
+  margin-bottom: 30px;
+  max-width: 500px;
 }
 
-.hero-image img {
-  width: 350px;
-  border-radius: 10px;
+.hero-img {
+  flex: 1;
+  min-width: 320px;
+  text-align: center;
 }
 
-/* Button */
-.btn {
-  background: #32a071;
-  color: white;
-  padding: 10px 25px;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: 0.3s;
+/* ------------------ Strategy Section ------------------ */
+.strategy {
+  padding: 80px 0;
+  background-color: #f9fafc;
 }
 
-.btn:hover {
-  background: #27825a;
-}
-
-/* Values Section */
-.values {
-  background: #fff;
-  padding: 70px 0;
-  display: flex;
-  justify-content: center;
-}
-
-.values .container {
-  display: flex;
-  flex-wrap: wrap;
+.strategy .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 30px;
 }
 
-.values-card {
-  background: #f3f8f5;
-  padding: 25px;
-  border-radius: 12px;
+.card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+  margin-bottom: 15px;
+  color: #111;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.card p,
+.card ul {
+  color: #555;
+  font-size: 1rem;
+}
+
+.card ul {
+  list-style: disc inside;
+  margin-top: 10px;
+}
+
+/* ------------------ Why Us Section ------------------ */
+.why {
+  padding: 100px 0;
+  background: #fefefe;
+}
+
+.why h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+  color: #222;
+}
+
+.why-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.why-item.reverse {
+  flex-direction: row-reverse;
+}
+
+.why-text {
   flex: 1;
   min-width: 300px;
 }
 
-.values-card h3 {
-  margin-bottom: 15px;
-  color: #222;
-}
-
-.values-card ul {
-  list-style: disc inside;
-  color: #555;
-}
-
-/* Why Us Section */
-.why-us {
-  padding: 80px 0;
-}
-
-.why-us h2 {
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 1.8rem;
-}
-
-.feature {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  margin-bottom: 50px;
-}
-
-.feature.reverse {
-  flex-direction: row-reverse;
-}
-
-.feature-text {
-  flex: 1;
-}
-
-.feature-text h3 {
-  color: #222;
+.why-text h3 {
+  color: #00b57a;
   margin-bottom: 10px;
+  font-size: 1.4rem;
 }
 
-.feature-text p {
+.why-text p {
   color: #555;
+  max-width: 500px;
+  font-size: 1rem;
 }
 
-.feature img {
-  width: 250px;
-  border-radius: 8px;
-}
-
-/* CTA Section */
-.cta {
-  background: linear-gradient(120deg, #d6f5e4, #e6f9fd);
+.why-img {
+  flex: 1;
   text-align: center;
-  padding: 80px 20px;
 }
 
-.cta h2 {
-  margin-bottom: 20px;
-}
-
-.cta p {
-  margin-bottom: 25px;
-  color: #555;
-  max-width: 700px;
-  margin-inline: auto;
-}
-
-/* Testimonial */
+/* ------------------ Testimonial ------------------ */
 .testimonial {
+  padding: 90px 20px;
   background: #fff;
   text-align: center;
-  padding: 70px 20px;
 }
 
 blockquote {
   font-style: italic;
-  color: #444;
-  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.1rem;
+  max-width: 750px;
+  margin: 0 auto 20px;
+  line-height: 1.7;
+  font-weight: 500;
 }
 
 .author {
-  color: #32a071;
   font-weight: 600;
+  color: #00b57a;
+  font-size: 1.1rem;
 }
 
-/* Responsive */
+/* ------------------ CTA ------------------ */
+.cta {
+  background: linear-gradient(130deg, #00b57a, #0ac9b7);
+  color: #fff;
+  text-align: center;
+  padding: 100px 20px;
+  border-radius: 0 0 80px 80px;
+  box-shadow: 0 10px 30px rgba(0, 181, 122, 0.15);
+}
+
+.cta h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.cta p {
+  max-width: 700px;
+  margin: 0 auto 30px auto;
+  font-size: 1.2rem;
+}
+
+/* ------------------ Footer ------------------ */
+/* (No changes needed for footer, assuming it's in a separate file) */
+
+/* ------------------ Responsive ------------------ */
 @media (max-width: 768px) {
-  .feature {
+  .hero-wrapper {
     flex-direction: column;
     text-align: center;
   }
 
-  .hero-content {
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .why-item {
     flex-direction: column;
     text-align: center;
   }
 
-  .hero-image img {
-    width: 80%;
+  .why-img {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .cta {
+    border-radius: 0;
+  }
+
+  .testimonial blockquote {
+    font-size: 1rem;
+  }
+
+  footer .footer-social-info a {
+    font-size: 1.2rem;
   }
 }
