@@ -1226,23 +1226,30 @@ ol {
 
 /* ##### 2.0 Header Area CSS ##### */
 
+/* Default header style */
+/* Default header style */
 .header-area {
     position: fixed;
+    margin: 10px auto;
+    width: 95%; /* This ensures the navbar has some margin from the sides */
+    border-radius: 10px;
     z-index: 5000;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0; /* This ensures the navbar is aligned to the sides */
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for default state */
 }
 
+/* Sticky header style */
 .header-area.sticky {
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
-    background-color: #d7dfef;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-    border-bottom: none;
+    background-color: white;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1); /* Stronger shadow when sticky */
+    border-bottom: none; /* Remove border when sticky */
 }
 
 .dark.classy-nav-container {
@@ -1262,6 +1269,8 @@ ol {
 .classy-navbar {
     height: 90px;
     padding: 0;
+    display: flex;
+    flex-direction: row;
 }
 
 .dark .classy-navbar-toggler.demo .navbarToggler span {
@@ -1627,7 +1636,7 @@ ol {
 .welcome-content {
     position: relative;
     z-index: 1;
-    margin-top: 90px;
+    margin-top: 150px;
 }
 
 .promo-section {
