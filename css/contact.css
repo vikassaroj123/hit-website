@@ -1,137 +1,269 @@
-/* Reset styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: "Poppins", sans-serif;
-  background: #f9fafc;
-  color: #333;
-  line-height: 1.6;
-  
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #222;
 }
 
 .container {
-  width: 80%;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  padding-top: 40px;
-}
-.container2 {
-  margin-top: 100px;
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
 }
 
-/* Section Styles */
-.contact-us-section {
-  padding: 40px 0;
-  background: linear-gradient(135deg, #f0f4f8, #e9eff5);
+/* Hero */
+.hero {
+  background: #0c1324;
+  color: #fff;
+  padding: 80px 0;
 }
-
-.contact-info {
-  flex: 1;
-  padding-right: 40px;
-}
-
-.contact-info h2 {
+.hero h1 {
   font-size: 2.5rem;
-  color: #2a2a2a;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin: 30px auto auto auto;
+}
+.hero p {
+  color: #ddd;
+  max-width: 600px;
+}
+/* Contact Options */
+.contact-options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 70px 20px;
+  background: #f5f7fb;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.contact-info p {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 30px;
+.contact-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  width: 300px;
+  padding: 30px 25px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+  color: #0066cc;
+}
+
+.contact-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #0c1324;
+}
+
+.contact-card p {
+  font-size: 0.95rem;
+  color: #555;
   line-height: 1.6;
 }
 
-.contact-details {
-  list-style: none;
+.contact-card strong {
+  color: #0c1324;
 }
 
-.contact-details li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.contact-details .icon {
-  font-size: 1.5rem;
-  color: #00b57a;
-  margin-right: 10px;
-}
-
-.contact-details span {
-  font-size: 1rem;
-  color: #555;
-}
-
-/* Form Styles */
-.contact-form {
-  flex: 1;
-  background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.contact-form h3 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #2a2a2a;
-}
-
-.contact-form label {
-  font-size: 1rem;
-  color: #333;
-  margin-bottom: 8px;
-  display: block;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  color: #333;
-}
-
-.contact-form textarea {
-  height: 150px;
-  resize: none;
-}
-
-.submit-btn {
-  width: 100%;
-  padding: 12px;
-  background: #00b57a;
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 22px;
+  background: #0066cc;
   color: #fff;
+  font-size: 0.95rem;
   border: none;
   border-radius: 8px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: 0.3s ease;
+  text-decoration: none;
+  transition: background 0.3s ease;
 }
 
-.submit-btn:hover {
-  background: #009466;
+.btn:hover {
+  background: #004c99;
+  color: black;
 }
 
-/* Mobile Responsive Styles */
 @media (max-width: 768px) {
-  .container {
+  .contact-options {
     flex-direction: column;
-    gap: 30px;
+    align-items: center;
   }
 
-  .contact-info {
-    padding-right: 0;
+  .contact-card {
+    width: 100%;
+    max-width: 400px;
   }
+}
+
+/* Get in Touch Section */
+.form-section {
+  padding: 80px 20px;
+  background-color: #f9fafc;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+.form-container {
+  flex: 1;
+  min-width: 350px;
+}
+
+.form-container h2 {
+  font-size: 2rem;
+  color: #0c1324;
+  margin-bottom: 10px;
+}
+
+.form-container p {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.contact-form {
+  margin-top: 30px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.form-row input {
+  flex: 1;
+  padding: 14px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+  background-color: #fff;
+}
+
+.form-row input:focus {
+  border-color: #0066cc;
+  outline: none;
+}
+
+.btn {
+  padding: 14px 28px;
+  background-color: #0066cc;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #004c99;
+}
+
+.form-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+}
+
+@media (max-width: 768px) {
+  .form-wrapper {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .form-container,
+  .form-image {
+    width: 100%;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+}
+
+/* Offices Section */
+.offices {
+  text-align: center;
+  background: #f8f9fb;
+  padding: 80px 0;
+}
+.offices h2 {
+  color: #0c1324;
+  margin-bottom: 5px;
+}
+.offices h3 {
+  color: #555;
+  margin-bottom: 50px;
+}
+.office-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+.office-card {
+  position: relative;
+  width: 300px;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+.office-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.office-card:hover img {
+  transform: scale(1.1);
+  filter: brightness(0.4);
+}
+.office-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  text-align: left;
+  transition: opacity 0.4s ease;
+}
+.office-card:hover .office-info {
+  opacity: 1;
+}
+.office-info h4 {
+  margin-top: 0;
+  color: #fff;
+}
+.office-info p {
+  font-size: 0.9rem;
+  margin: 4px 0;
 }
