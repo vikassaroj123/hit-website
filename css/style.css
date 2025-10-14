@@ -7444,7 +7444,7 @@ textarea:required {
 .breadcumb-area {
     position: relative;
     z-index: 1;
-    height: 400px !important;
+    height: 250px !important;
 }
 
 .breadcumb-content {
