@@ -4,7 +4,7 @@
 }
 
 .book-call-btn {
-  background: #4caf50;
+  background: #1357be;
   color: #fff !important;
   padding: 10px 18px;
   border-radius: 6px;
@@ -14,7 +14,8 @@
 }
 
 .book-call-btn:hover {
-  background: #43a047;
+  background: #1357bea7;
+  scale: calc(1.04);
 }
 .image-container {
   text-align: center; /* Center the image horizontally */
