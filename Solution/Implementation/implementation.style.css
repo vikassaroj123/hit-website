@@ -1,0 +1,629 @@
+/* ================================
+   Global Reset & Base Styles
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: #333;
+  line-height: 1.6;
+  background-color: #f5f7fa;
+  overflow-x: hidden;
+}
+
+img,
+dotlottie-wc {
+  max-width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Containers */
+.container {
+  width: min(90%, 1200px);
+  margin: 0 auto;
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: #1357be;
+  color: #fff;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 10px rgba(19, 87, 190, 0.3);
+}
+
+.btn-primary:hover {
+  background: #0e4aa0;
+  transform: translateY(-3px);
+}
+
+/* ================================
+   HERO SECTION
+================================ */
+.hero {
+  background: linear-gradient(135deg, #e8f0ff, #f7fbff);
+  padding: clamp(60px, 8vw, 120px) 0;
+  overflow: hidden;
+}
+
+.hero-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.hero-text {
+  flex: 1 1 420px;
+}
+
+.hero-text h1 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero-text span {
+  color: #1357be;
+}
+
+.hero-text p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+}
+
+.hero-img {
+  flex: 1 1 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lottie-container {
+  width: 100%;
+  max-width: 550px;
+  aspect-ratio: 16/12;
+}
+
+/* ================================
+   STRATEGY SECTION
+================================ */
+.strategy {
+  padding: clamp(60px, 8vw, 100px) 0;
+  background-color: #f9fafc;
+}
+
+.strategy .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+.strategy h3 {
+  font-size: 1.8rem;
+  color: #1357be;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.strategy p {
+  color: #555;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* ================================
+   WHY US SECTION
+================================ */
+.why {
+  padding: clamp(60px, 8vw, 120px) 0;
+  background-color: #fff;
+}
+
+.why h2 {
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #222;
+}
+
+.why-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-bottom: 4rem;
+}
+
+.why-item.reverse {
+  flex-direction: row-reverse;
+}
+
+.why-text {
+  flex: 1 1 400px;
+}
+
+.why-text h3 {
+  color: #1357be;
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.why-text p {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.why-img {
+  flex: 1 1 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ================================
+   CTA SECTION
+================================ */
+.cta {
+  background: linear-gradient(130deg, #1357be, #0aa0c9);
+  color: #fff;
+  text-align: center;
+  padding: clamp(80px, 10vw, 120px) 1rem;
+  border-radius: 0 0 80px 80px;
+  box-shadow: 0 8px 25px rgba(19, 87, 190, 0.3);
+}
+
+.cta h2 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: 1rem;
+}
+
+.cta p {
+  font-size: 1.1rem;
+  max-width: 650px;
+  margin: 0 auto 2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ================================
+   PROCESS SECTION
+================================ */
+.process-container {
+  text-align: center;
+  padding: clamp(60px, 8vw, 100px) 1rem;
+}
+
+.process-container h2 {
+  font-size: clamp(1.8rem, 4vw, 2.3rem);
+  margin-bottom: 2rem;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.step {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  /* box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08); */
+  transition: 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-6px);
+}
+
+.step-number {
+  width: 50px;
+  height: 50px;
+  background: #1357be;
+  color: #fff;
+  font-size: 1.4rem;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  line-height: 50px;
+  font-weight: 700;
+}
+
+/* ================================
+   RESPONSIVE ADJUSTMENTS
+================================ */
+@media (max-width: 992px) {
+  .hero-wrapper {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .hero-text p {
+    margin-inline: auto;
+  }
+
+  .why-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .why-img {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 576px) {
+  .btn-primary {
+    padding: 0.8rem 1.5rem;
+  }
+
+  .hero-text h1 {
+    font-size: 1.6rem;
+  }
+
+  .cta h2 {
+    font-size: 1.8rem;
+  }
+
+  .cta p {
+    font-size: 1rem;
+  }
+
+  .step {
+    padding: 1.5rem;
+  }
+}
+
+/* get in touch css  */
+
+/* Main container */
+.container {
+  /* max-width: 1200px; */
+  width: 100%;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* header2 section */
+.header2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header2 h1 {
+  font-size: 36px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.header2 span {
+  color: #1357be;
+}
+
+.stars {
+  margin-top: 10px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.stars img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+/* Outer container */
+.outer-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 40px 0;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.content {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  width: 90%;
+  max-width: 1200px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Review Section */
+.review {
+  flex: 1;
+  min-width: 320px;
+  background-color: transparent;
+  padding: 20px;
+  color: #fff;
+}
+
+.review-content p {
+  font-size: 18px;
+  line-height: 1.7;
+  font-style: italic;
+  color: #151212;
+  margin-bottom: 25px;
+}
+
+.client-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.client-info img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+}
+
+.client-info p {
+  font-weight: 600;
+  color: #0c0909;
+}
+
+.client-info small {
+  color: #0e0b0b;
+}
+
+/* Form Container */
+.form-container {
+  flex: 1;
+  min-width: 350px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-form h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.form-subtitle {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.feedback-form input:focus,
+.feedback-form textarea:focus {
+  border-color: #1357be;
+  background-color: #fff;
+  outline: none;
+}
+
+.feedback-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.checkbox input {
+  margin-right: 8px;
+}
+
+.feedback-form button {
+  background-color: #1357be;
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.feedback-form button:hover {
+  background-color: #0f48a2;
+  transform: translateY(-2px);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-container,
+  .review {
+    width: 100%;
+  }
+}
+
+/* General Section Styling */
+.expertise-container {
+  background: #1357be0a;
+  text-align: center;
+  padding: 60px 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.expertise-container h2 {
+  color: #1357be;
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.expertise-container p {
+  color: #333;
+  font-size: 16px;
+  max-width: 700px;
+  margin: 0 auto 50px;
+  line-height: 1.6;
+}
+
+/* Grid Layout for Steps */
+.expertise-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns by default */
+  gap: 25px;
+  justify-items: center;
+  align-items: stretch;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+.expertise-step {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Responsive: 1 column on small screens */
+@media (max-width: 768px) {
+  .expertise-steps {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+  }
+}
+
+/* Individual Step Box */
+.expertise-step {
+  background: #f7f7f7;
+  border-radius: 10px;
+  padding: 30px 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.expertise-step:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Highlight Backgrounds (Yellow) */
+.expertise-step:nth-child(2),
+.expertise-step:nth-child(3) {
+  background: #ffed75;
+}
+
+/* Icons */
+.expertise-icon {
+  width: 45px;
+  height: 45px;
+  margin-bottom: 15px;
+}
+
+/* Titles */
+.expertise-step h3 {
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Paragraphs */
+.expertise-step p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.5;
+}
+
+/* Adjust spacing on small screens */
+@media (max-width: 768px) {
+  .expertise-container h2 {
+    font-size: 22px;
+  }
+  .expertise-step {
+    padding: 25px 15px;
+  }
+}
