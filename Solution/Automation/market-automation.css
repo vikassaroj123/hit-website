@@ -1,4 +1,3 @@
-/* ------------------ Base ------------------ */
 * {
   margin: 0;
   padding: 0;
@@ -9,9 +8,8 @@ body {
   font-family: "Poppins", sans-serif;
   color: #333;
   line-height: 1.6;
-  background-color: #1357be9c;
+  background-color: #1357be1a;
   font-size: 16px;
-  /* padding-top: 10px; Ensure content doesn’t overlap with header */
 }
 
 img {
@@ -24,7 +22,35 @@ img {
   width: 90%;
   max-width: 1150px;
   margin: 0 auto;
-  padding: 0 15px; /* To make it more flexible */
+  padding: 0 15px;
+}
+/* Responsive Lottie Animation */
+.lottie-container {
+  width: 100%;
+  max-width: 650px; /* Keeps it from getting too large on big screens */
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lottie-container dotlottie-wc {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1; /* Keeps it square */
+}
+
+/* Responsive scaling on smaller devices */
+@media (max-width: 768px) {
+  .lottie-container {
+    max-width: 450px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lottie-container {
+    max-width: 300px;
+  }
 }
 
 /* ------------------ Buttons ------------------ */
@@ -42,7 +68,7 @@ img {
 }
 
 .btn-primary:hover {
-  background: #1357be92;
+  background: #0e4aa0;
   transform: translateY(-3px);
   box-shadow: 0 6px 15px rgba(0, 181, 122, 0.4);
 }
@@ -143,7 +169,7 @@ img {
 .why h2 {
   text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   color: #222;
 }
 
@@ -152,7 +178,7 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
   flex-wrap: wrap;
 }
 
@@ -182,6 +208,84 @@ img {
   text-align: center;
 }
 
+/* ------------------ Process Section ------------------ */
+.process-container {
+  margin: 80px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.process-container h2 {
+  font-size: 2.3rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 50px;
+  line-height: 1.3;
+  text-transform: capitalize;
+}
+
+.process-starting {
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 60px;
+}
+
+.process-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.step {
+  flex: 1 1 300px;
+  max-width: 350px;
+  padding: 30px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-8px);
+}
+
+.step-number {
+  background-color: #1357be;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: inline-block;
+}
+
+.step-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.step-icon:hover {
+  transform: scale(1.2);
+}
+
+.step-content p {
+  font-size: 1rem;
+  color: #555;
+  font-weight: 500;
+}
+
 /* ------------------ Testimonial ------------------ */
 .testimonial {
   padding: 90px 20px;
@@ -207,7 +311,7 @@ blockquote {
 
 /* ------------------ CTA ------------------ */
 .cta {
-  background: linear-gradient(130deg, #1357be, #0aa0c99e);
+  background: linear-gradient(130deg, #1357be, #0aa0c9);
   color: #fff;
   text-align: center;
   padding: 100px 20px;
@@ -222,23 +326,20 @@ blockquote {
 
 .cta p {
   max-width: 700px;
-  color: #111111b3;
-  margin: 0 auto 30px auto;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 auto 30px;
   font-size: 1.2rem;
 }
 
-/* ------------------ Footer ------------------ */
-/* (No changes needed for footer, assuming it's in a separate file) */
-
 /* ------------------ Responsive ------------------ */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .hero-wrapper {
-    flex-direction: column;
+    flex-direction: column-reverse;
     text-align: center;
   }
 
   .hero-text h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .why-item {
@@ -251,92 +352,32 @@ blockquote {
     margin: 0 auto;
   }
 
-  .cta {
-    border-radius: 0;
+  .process-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-text h1 {
+    font-size: 1.8rem;
   }
 
-  .testimonial blockquote {
+  .btn-primary {
+    padding: 12px 25px;
+  }
+
+  .cta h2 {
+    font-size: 1.8rem;
+  }
+
+  .cta p {
     font-size: 1rem;
   }
 
-  footer .footer-social-info a {
-    font-size: 1.2rem;
+  .step {
+    padding: 20px;
   }
-}
-
-.process-container {
-  margin: 80px auto;
-  padding: 0 20px;
-  text-align: center;
-}
-.process-starting {
-  margin-bottom: 50px;
-  display: flex;
-  align-items: center;
-  gap: 100px;
-  /* justify-content: center; */
-}
-
-.process-container h2 {
-  font-size: 36px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 40px;
-  line-height: 1.3;
-  text-transform: capitalize;
-}
-
-.process-steps {
-  display: flex;
-  /* grid-template-columns: repeat(3, 1fr); */
-  gap: 30px;
-  margin-bottom: 50px;
-}
-
-.step {
-  width: 500px;
-  padding: 30px;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  gap: 300px;
-}
-
-.step:hover {
-  transform: translateY(-8px);
-}
-
-.step-number {
-  background-color: #6a4dfd;
-  color: #fff;
-  font-size: 28px;
-  font-weight: 700;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  border-radius: 50%;
-  margin-bottom: 20px;
-  display: inline-block;
-}
-
-.step-content {
-  margin-top: 20px;
-}
-
-.step-icon {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 20px;
-  transition: transform 0.3s ease;
-}
-
-.step-icon:hover {
-  transform: scale(1.2);
-}
-
-.step p {
-  font-size: 18px;
-  color: #555;
-  font-weight: 500;
 }
 
 /* get in touch css  */
@@ -379,74 +420,71 @@ blockquote {
   margin-right: 5px;
 }
 
-/* Outer container for both content sections */
-.content {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-}
+/* Outer container */
 .outer-container {
   display: flex;
-  justify-content: space-between;
-  gap: 30px;
-  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  padding: 40px 0;
   animation: fadeIn 1s ease-in-out;
+}
+
+.content {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  width: 90%;
+  max-width: 1200px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Review Section */
 .review {
-  width: 55%;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  /* background-color: #fff; */
-  margin: auto;
-  padding: 30px;
-  border-radius: 12px;
-  /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
-  transition: transform 0.3s ease;
-}
-
-.review:hover {
-  transform: translateY(-5px);
+  flex: 1;
+  min-width: 320px;
+  background-color: transparent;
+  padding: 20px;
+  color: #fff;
 }
 
 .review-content p {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.7;
-  color: #666;
-  margin-bottom: 20px;
+  font-style: italic;
+  color: #151212;
+  margin-bottom: 25px;
 }
 
 .client-info {
   display: flex;
   align-items: center;
+  gap: 15px;
 }
 
 .client-info img {
-  width: 50px;
-  height: 50px;
-  margin-right: 15px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
 }
 
 .client-info p {
   font-weight: 600;
+  color: #0c0909;
 }
 
 .client-info small {
-  font-size: 14px;
-  color: #888;
+  color: #0e0b0b;
 }
 
 /* Form Container */
 .form-container {
-  width: 48%;
+  flex: 1;
+  min-width: 350px;
   background-color: #fff;
-  padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .feedback-form {
@@ -456,25 +494,34 @@ blockquote {
 
 .feedback-form h3 {
   font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 25px;
-  color: #333;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 5px;
 }
 
-.feedback-form label {
-  font-weight: 500;
-  margin-top: 15px;
+.form-subtitle {
+  font-size: 15px;
   color: #555;
+  margin-bottom: 25px;
 }
 
 .feedback-form input,
 .feedback-form textarea {
-  padding: 12px;
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
   margin-bottom: 15px;
-  font-size: 16px;
   border-radius: 8px;
   border: 1px solid #ddd;
-  background-color: #f9f9f9;
+  background-color: #f8f8f8;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.feedback-form input:focus,
+.feedback-form textarea:focus {
+  border-color: #1357be;
+  background-color: #fff;
+  outline: none;
 }
 
 .feedback-form textarea {
@@ -482,51 +529,57 @@ blockquote {
   min-height: 120px;
 }
 
+.checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.checkbox input {
+  margin-right: 8px;
+}
+
 .feedback-form button {
   background-color: #1357be;
   color: white;
-  padding: 12px 25px;
+  padding: 14px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .feedback-form button:hover {
-  background-color: #1357bead;
+  background-color: #0f48a2;
+  transform: translateY(-2px);
 }
 
-/* Animation for fade-in */
+/* Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .outer-container {
+/* Responsive */
+@media (max-width: 900px) {
+  .content {
     flex-direction: column;
+    align-items: center;
   }
 
-  .review,
-  .form-container {
+  .form-container,
+  .review {
     width: 100%;
-  }
-
-  .header2 h1 {
-    font-size: 28px;
-  }
-}
-
-@media (max-width: 500px) {
-  .header2 h1 {
-    font-size: 24px;
   }
 }
 

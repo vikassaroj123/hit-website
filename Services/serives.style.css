@@ -1,0 +1,537 @@
+/* General Styling */
+body {
+  font-family: "Inter", sans-serif;
+  /* background-color: #fafafa; */
+  margin: 0;
+  /* padding: 40px; */
+  color: #1a1a1a;
+}
+
+/* Grid Layout */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+.header-area {
+  color: #000;
+}
+
+/* Individual Card */
+.service-card {
+  /* background: #fff; */
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 30px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Icon Circle */
+.icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.green {
+  background: #b5e28c;
+}
+.blue {
+  background: #b8c7ff;
+}
+.red {
+  background: #ffc4b4;
+}
+.darkblue {
+  background: #d7e5ff;
+  color: #1a1a1a;
+}
+.yellow {
+  background: #ffeaa7;
+  color: #1a1a1a;
+}
+.lightblue {
+  background: #b8f1ff;
+  color: #1a1a1a;
+}
+
+/* Typography */
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Link Styling */
+.details-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: #0a2540;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.details-link:hover {
+  color: #0056b3;
+}
+
+/* ========================
+   Industries Section
+======================== */
+
+.industries {
+  text-align: center;
+  margin: 100px auto;
+  max-width: 1200px;
+}
+
+.industries h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.industries .subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 50px;
+}
+
+/* Grid Layout */
+.industry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+/* Card Styling */
+.industry-card {
+  /* background: #fff; */
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 30px;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.industry-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Icon Circle */
+.industry-card .icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+/* Color Variants */
+.yellow {
+  background: #ffeaa7;
+  color: #1a1a1a;
+}
+.green {
+  background: #b5e28c;
+  color: #1a1a1a;
+}
+.blue {
+  background: #b8c7ff;
+  color: #1a1a1a;
+}
+.red {
+  background: #ffc4b4;
+  color: #1a1a1a;
+}
+.lightblue {
+  background: #b8f1ff;
+  color: #1a1a1a;
+}
+.darkblue {
+  background: #d7e5ff;
+  color: #1a1a1a;
+}
+
+/* Typography */
+.industry-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.industry-card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* =============================
+   Testimonial Section
+============================= */
+.testimonials {
+  text-align: center;
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 0 20px;
+}
+
+.testimonials h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0a2540;
+  margin-bottom: 10px;
+}
+
+.testimonials h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0a2540;
+  margin-bottom: 10px;
+}
+
+.testimonials .subtitle {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 50px;
+  line-height: 1.5;
+}
+
+/* Testimonial container layout */
+.testimonial-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+/* Cards */
+.testimonial-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 15px;
+  border: 2px solid #e6eaf0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 30px;
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Header (image + name) */
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.testimonial-header img {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #f0f2f8;
+}
+
+.testimonial-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0a2540;
+}
+
+.testimonial-header span {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Testimonial text */
+.testimonial-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0a2540;
+  margin-bottom: 10px;
+}
+
+.testimonial-card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* Star rating */
+.stars {
+  color: #ffc107;
+  font-size: 1.1rem;
+}
+
+/* Navigation buttons */
+.nav-btn {
+  background: #fff;
+  border: none;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.nav-btn:hover {
+  background: #f0f0f0;
+}
+
+.nav-btn.left {
+  position: absolute;
+  left: -20px;
+}
+
+.nav-btn.right {
+  position: absolute;
+  right: -20px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .testimonial-container {
+    flex-direction: column;
+  }
+
+  .nav-btn {
+    display: none;
+  }
+}
+
+/* get in touch css  */
+
+/* Main container */
+.container {
+  /* max-width: 1200px; */
+  width: 100%;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* header2 section */
+.header2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header2 h1 {
+  font-size: 36px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.header2 span {
+  color: #1357be;
+}
+
+.stars {
+  margin-top: 10px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.stars img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+/* Outer container */
+.outer-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 40px 0;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.content {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  width: 90%;
+  max-width: 1200px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Review Section */
+.review {
+  flex: 1;
+  min-width: 320px;
+  background-color: transparent;
+  padding: 20px;
+  color: #fff;
+}
+
+.review-content p {
+  font-size: 18px;
+  line-height: 1.7;
+  font-style: italic;
+  color: #151212;
+  margin-bottom: 25px;
+}
+
+.client-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.client-info img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+}
+
+.client-info p {
+  font-weight: 600;
+  color: #0c0909;
+}
+
+.client-info small {
+  color: #0e0b0b;
+}
+
+/* Form Container */
+.form-container {
+  flex: 1;
+  min-width: 350px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-form h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.form-subtitle {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.feedback-form input:focus,
+.feedback-form textarea:focus {
+  border-color: #1357be;
+  background-color: #fff;
+  outline: none;
+}
+
+.feedback-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.checkbox input {
+  margin-right: 8px;
+}
+
+.feedback-form button {
+  background-color: #1357be;
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.feedback-form button:hover {
+  background-color: #0f48a2;
+  transform: translateY(-2px);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-container,
+  .review {
+    width: 100%;
+  }
+}
