@@ -33,9 +33,10 @@ body {
   margin-bottom: 20px;
 }
 
-.hero2 p {
+.hero p {
   font-size: 1rem;
   max-width: 500px;
+
 }
 
 .hero-img2 img {

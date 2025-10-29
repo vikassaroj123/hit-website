@@ -7458,10 +7458,28 @@ textarea:required {
     background: -webkit-linear-gradient(to right, rgba(72, 52, 212, 0.95), rgba(52, 31, 151, 0.95));
     background: -webkit-linear-gradient(left, rgba(72, 52, 212, 0.95), rgba(52, 31, 151, 0.95));
     background: linear-gradient(to right, rgba(72, 52, 212, 0.95), rgba(52, 31, 151, 0.95));
+    display: flex;
+  align-items: center;       /* Vertically center */
+  justify-content: center;   /* Horizontally center */
+  text-align: center;         /* Center text */
+  padding: 0 15px;   
 }
 
 .breadcumb--con {
     padding-top: 90px;
+}
+.breadcumb-content .breadcumb--con h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem); /* Responsive font size */
+  margin-bottom: 15px;
+  color: #0b1a3d;
+}
+
+.breadcumb-content .breadcumb--con p {
+  font-size: 1rem;
+  max-width: 700px;          /* Prevents very wide text on large screens */
+  margin: 0 auto;
+  color: #555;
+  line-height: 1.6;
 }
 
 .breadcrumb {
