@@ -75,14 +75,15 @@ body {
   object-fit: contain;
 }
 
-
-
 /* Responsive Breakpoints */
 @media (max-width: 900px) {
   .about {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     padding: 40px 5%;
+  }
+  .breadcumb-area {
+    height: 400px !important;
   }
 
   .about-text,
@@ -350,7 +351,7 @@ body {
 @media (max-width: 768px) {
   .hero,
   .about {
-    flex-direction: column;
+    flex-direction: column-reverse;
     text-align: center;
   }
 

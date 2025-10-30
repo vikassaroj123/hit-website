@@ -7444,7 +7444,7 @@ textarea:required {
 .breadcumb-area {
     position: relative;
     z-index: 1;
-    height: 250px !important;
+    height: 280px !important;
 }
 
 .breadcumb-content {
@@ -7478,7 +7478,7 @@ textarea:required {
   font-size: 1rem;
   max-width: 700px;          /* Prevents very wide text on large screens */
   margin: 0 auto;
-  color: #555;
+  color: #ccc;
   line-height: 1.6;
 }
 

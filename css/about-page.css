@@ -96,6 +96,10 @@ img {
   flex-wrap: wrap;
   padding: var(--section-padding);
   background: var(--secondary);
+  background: rgba(19, 4, 118, 0.927);
+
+  /* background-image: url(/img/bg-img/bg-2.jpg);
+  background-color: #005bcc; */
   color: #fff;
   gap: 40px;
 }
@@ -108,6 +112,7 @@ img {
   font-size: clamp(2rem, 4vw, 3rem);
   margin-bottom: 20px;
   line-height: 1.2;
+  color: #eef4ff;
 }
 
 .hero2 p {
@@ -126,6 +131,7 @@ img {
 .hero_image {
   flex: 1 1 400px;
   text-align: center;
+  margin-top: 30px;
 }
 
 .hero_image img {
