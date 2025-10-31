@@ -37,6 +37,11 @@
       src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.1/dist/dotlottie-wc.js"
       type="module"
     ></script>
+    <link rel="stylesheet" href="css/get-in-touch.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
   </head>
 
   <body class="light-version">
@@ -48,7 +53,11 @@
     </div>
 
     <!-- ##### Header Area Start ##### -->
-    <header class="header-area fadeInDown" data-wow-delay="0.2s">
+    <header
+      class="header-area fadeInDown"
+      style="z-index: 998"
+      data-wow-delay="0.2s"
+    >
       <div class="classy-nav-container light breakpoint-off">
         <div class="container">
           <!-- Classy Menu -->
@@ -57,7 +66,7 @@
             id="dreamNav"
           >
             <!-- Logo -->
-            <a href="#" class="nav-brand light">
+            <a href="/" class="nav-brand light">
               <img
                 src="/img/core-img/logo.png"
                 alt="logo"
@@ -125,13 +134,17 @@
                   <li><a href="/contact-us.html">Contact us</a></li>
                 </ul>
                 <div class="book-btn">
+                  <div class="call-button touchOpenTrigger">
+                    <i class="fa-solid fa-phone"></i>
+                  </div>
                   <a href="#" class="btn book-call-btn">Book Discovery Call</a>
                 </div>
-
-                <!-- Button -->
               </div>
             </div>
             <div class="book-btn2">
+              <div class="call-button touchOpenTrigger">
+                <i class="fa-solid fa-phone"></i>
+              </div>
               <a href="#" class="btn book-call-btn">Book Discovery Call</a>
             </div>
 
@@ -240,6 +253,121 @@
         <a href="#" class="details-link">View Details →</a>
       </div>
     </section>
+    <!-- get in touch side bar  -->
+    <!-- ===== Contact Panel (Hidden by default) ===== -->
+    <aside class="touch-panel" id="touchPanel">
+      <button class="touch-close-btn" id="touchCloseBtn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Request a Quote Form -->
+      <div class="touch-quote">
+        <h2 class="touch-title">Request A Quote</h2>
+        <form class="touch-form">
+          <input
+            type="text"
+            placeholder="Enter name"
+            class="touch-input"
+            required
+          />
+          <input
+            type="email"
+            placeholder="Enter email"
+            class="touch-input"
+            required
+          />
+          <input type="text" placeholder="Enter company" class="touch-input" />
+          <input type="tel" placeholder="Enter mobile" class="touch-input" />
+          <textarea
+            placeholder="Enter your message"
+            class="touch-textarea"
+            rows="3"
+          ></textarea>
+          <button type="submit" class="touch-btn">Submit</button>
+        </form>
+      </div>
+
+      <hr class="touch-divider" />
+
+      <!-- Get In Touch Section -->
+      <div class="touch-contact">
+        <h2 class="touch-title">Get In Touch</h2>
+        <p class="touch-description">
+          Please fill out the form below if you have a plan or project in mind
+          that you'd like to share with us.
+        </p>
+
+        <div class="touch-contact-list">
+          <div class="touch-item">
+            <i class="fa-solid fa-phone touch-icon"></i>
+            <div class="touch-text">
+              <p>
+                <a href="tel:++918129031222" class="touch-link"
+                  >+91-8129031222</a
+                >
+              </p>
+              <span class="touch-subtext">Mon-Sat 9am - 6pm</span>
+            </div>
+          </div>
+
+          <div class="touch-item">
+            <i class="fa-brands fa-whatsapp touch-icon"></i>
+            <div class="touch-text">
+              <p>
+                <a
+                  href="https://wa.me/8129031222"
+                  target="_blank"
+                  class="touch-link"
+                  >+91-8129031222</a
+                >
+              </p>
+              <span class="touch-subtext">Mon-Sat 9am - 6pm</span>
+            </div>
+          </div>
+
+          <div class="touch-item">
+            <i class="fa-solid fa-envelope touch-icon"></i>
+            <div class="touch-text">
+              <p>
+                <a href="mailto:contact@shyphan.com" class="touch-link"
+                  >admin@hitech.com.in</a
+                >
+              </p>
+              <span class="touch-subtext">Online Support</span>
+            </div>
+          </div>
+
+          <div class="touch-item">
+            <i class="fa-solid fa-location-dot touch-icon"></i>
+            <div class="touch-text">
+              <p class="touch-address">
+                Office 8, Second Floor, C4, Sector 63, Noida, India
+              </p>
+              <span class="touch-subtext">Visit Our Office</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="touch-social">
+          <a href="#" class="touch-social-link"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" class="touch-social-link"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="#" class="touch-social-link"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" class="touch-social-link"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <a href="#" class="touch-social-link"
+            ><i class="fab fa-youtube"></i
+          ></a>
+        </div>
+      </div>
+    </aside>
+    <div class="touch-overlay" id="touchOverlay"></div>
 
     <!-- Industries Section -->
     <section class="industries ico-about-bg">
@@ -798,5 +926,36 @@
     <script src="/js/plugins.js"></script>
     <script src="/js/dzsparallaxer.js"></script>
     <script src="/js/script.js"></script>
+    <!-- side baar script  -->
+    <script>
+      const panel = document.getElementById("touchPanel");
+      const overlay = document.getElementById("touchOverlay");
+      const closeBtn = document.getElementById("touchCloseBtn");
+
+      // Get all elements that can open the panel
+      const openTriggers = document.querySelectorAll(".touchOpenTrigger");
+
+      function openPanel() {
+        panel.classList.add("touch-active");
+        overlay.classList.add("touch-overlay-show");
+      }
+
+      function closePanel() {
+        panel.classList.remove("touch-active");
+        overlay.classList.remove("touch-overlay-show");
+      }
+
+      // Attach open event to all triggers
+      openTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", (e) => {
+          e.preventDefault();
+          openPanel();
+        });
+      });
+
+      // Close buttons
+      closeBtn.addEventListener("click", closePanel);
+      overlay.addEventListener("click", closePanel);
+    </script>
   </body>
 </html>

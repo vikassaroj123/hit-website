@@ -16,7 +16,11 @@
     ></script>
   </head>
   <body>
-    <header class="header-area fadeInDown" data-wow-delay="0.2s">
+    <header
+      class="header-area fadeInDown"
+      style="z-index: 998"
+      data-wow-delay="0.2s"
+    >
       <div class="classy-nav-container light breakpoint-off">
         <div class="container">
           <!-- Classy Menu -->
@@ -25,7 +29,7 @@
             id="dreamNav"
           >
             <!-- Logo -->
-            <a href="#" class="nav-brand light">
+            <a href="/" class="nav-brand light">
               <img
                 src="img/core-img/logo.png"
                 alt="logo"
@@ -217,13 +221,17 @@
                   <li><a href="/contact-us.html">Contact us</a></li>
                 </ul>
                 <div class="book-btn">
+                  <div class="call-button touchOpenTrigger">
+                    <i class="fa-solid fa-phone"></i>
+                  </div>
                   <a href="#" class="btn book-call-btn">Book Discovery Call</a>
                 </div>
-
-                <!-- Button -->
               </div>
             </div>
             <div class="book-btn2">
+              <div class="call-button touchOpenTrigger">
+                <i class="fa-solid fa-phone"></i>
+              </div>
               <a href="#" class="btn book-call-btn">Book Discovery Call</a>
             </div>
 
@@ -686,5 +694,36 @@
     <script src="/js/plugins.js"></script>
     <script src="/js/dzsparallaxer.js"></script>
     <script src="/js/script.js"></script>
+    <!-- side baar script  -->
+    <script>
+      const panel = document.getElementById("touchPanel");
+      const overlay = document.getElementById("touchOverlay");
+      const closeBtn = document.getElementById("touchCloseBtn");
+
+      // Get all elements that can open the panel
+      const openTriggers = document.querySelectorAll(".touchOpenTrigger");
+
+      function openPanel() {
+        panel.classList.add("touch-active");
+        overlay.classList.add("touch-overlay-show");
+      }
+
+      function closePanel() {
+        panel.classList.remove("touch-active");
+        overlay.classList.remove("touch-overlay-show");
+      }
+
+      // Attach open event to all triggers
+      openTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", (e) => {
+          e.preventDefault();
+          openPanel();
+        });
+      });
+
+      // Close buttons
+      closeBtn.addEventListener("click", closePanel);
+      overlay.addEventListener("click", closePanel);
+    </script>
   </body>
 </html>

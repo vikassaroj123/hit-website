@@ -30,7 +30,11 @@
     </div>
 
     <!-- ##### Header Area Start ##### -->
-    <header class="header-area fadeInDown" data-wow-delay="0.2s">
+    <header
+      class="header-area fadeInDown"
+      style="z-index: 998"
+      data-wow-delay="0.2s"
+    >
       <div class="classy-nav-container light breakpoint-off">
         <div class="container">
           <!-- Classy Menu -->
@@ -39,7 +43,7 @@
             id="dreamNav"
           >
             <!-- Logo -->
-            <a href="#" class="nav-brand light">
+            <a href="/" class="nav-brand light">
               <img
                 src="img/core-img/logo.png"
                 alt="logo"
@@ -69,130 +73,9 @@
                 <ul id="nav">
                   <li><a href="#home">Home</a></li>
 
-                  <!-- Solutions Dropdown -->
-                  <!-- <li>
-                    <a href="#">ZohoSolutions</a>
-                    <ul class="dropdown" style="width: auto">
-                      <li>
-                        <a href="#">Automation</a>
-                        <ul class="dropdown" style="width: max-content">
-                          <li>
-                            <a
-                              href="/Solution/Automation/market-automation.html"
-                              >Marketing Automation</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              href="/Solution/Automation/process-automation.html"
-                              >Process Automation</a
-                            >
-                          </li>
-                          <li>
-                            <a href="/Solution/Automation/hrms-automation.html"
-                              >HRMS Automation</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              href="/Solution/Automation/payroll-automation.html"
-                              >Payroll Automation</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              href="/Solution/Automation/service-automation.html"
-                              >Service Automation</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              href="/Solution/Automation/finance-automation.html"
-                              >Finance Automation</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              href="/Solution/Automation/business-automation.html"
-                              >Business Automation</a
-                            >
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#">Development</a>
-                        <ul class="dropdown" style="width: max-content">
-                          <li><a href="#">Software</a></li>
-                          <li><a href="#">Website</a></li>
-                          <li><a href="#">Low-Code </a></li>
-                          <li><a href="#">Web Application </a></li>
-                          <li><a href="#">Mobile Application </a></li>
-                          <li><a href="#">E-Commerce </a></li>
-                          <li><a href="#">ERP</a></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#">Implementation</a>
-                        <ul class="dropdown" style="width: max-content">
-                          <li><a href="#">ZOHO</a></li>
-                          <li><a href="#">Salesforce</a></li>
-                          <li><a href="#">Microsoft Dynamics 365</a></li>
-                          <li><a href="#">Hubspot</a></li>
-                          <li><a href="#">Office 365</a></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#">Marketing </a>
-                        <ul class="dropdown" style="width: max-content">
-                          <li><a href="#">Branding</a></li>
-                          <li><a href="#">Demand Generation</a></li>
-                          <li><a href="#">S.E.O</a></li>
-                          <li><a href="#">Designing </a></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#">Consulting </a>
-                        <ul class="dropdown" style="width: max-content">
-                          <li><a href="#">Digital Marketing </a></li>
-                          <li><a href="#">IT Solution Consulting </a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li> -->
-
                   <!-- Services Dropdown -->
                   <li>
                     <a href="/Services/service-index.html">Services</a>
-                    <!-- <ul class="dropdown" style="width: max-content">
-                      <li>
-                        <a href="#">CRM Services </a>
-                        <ul class="dropdown" style="width: max-content">
-                          <li><a href="#">ZOHO CRM</a></li>
-                          <li>
-                            <a href="#">Salesforce Sales and Implementation</a>
-                          </li>
-                          <li><a href="#">Hubspot and Implementation</a></li>
-                          <li>
-                            <a href="#"
-                              >Microsoft Dynamics 365 Sales And
-                              Implementation</a
-                            >
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#">Payroll Management </a>
-                        <ul class="dropdown" style="width: max-content">
-                          <li><a href="#">ZOHO Payroll</a></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#">Inventory Management </a>
-                        <ul class="dropdown" style="width: max-content">
-                          <li><a href="#">ZOHO Inventory</a></li>
-                        </ul>
-                      </li>
-                    </ul> -->
                   </li>
 
                   <!-- zoho solution dropdown -->
@@ -217,7 +100,9 @@
                         <a href="zoho-solution/zoho-one.html">Zoho One </a>
                       </li>
                       <li>
-                        <a href="zoho-solution/zoho-content-creation.html">zoho Creator (custom App) </a>
+                        <a href="zoho-solution/zoho-content-creation.html"
+                          >zoho Creator (custom App)
+                        </a>
                       </li>
                     </ul>
                   </li>
@@ -234,13 +119,17 @@
                   <li><a href="/contact-us.html">Contact us</a></li>
                 </ul>
                 <div class="book-btn">
+                  <div class="call-button touchOpenTrigger">
+                    <i class="fa-solid fa-phone"></i>
+                  </div>
                   <a href="#" class="btn book-call-btn">Book Discovery Call</a>
                 </div>
-
-                <!-- Button -->
               </div>
             </div>
             <div class="book-btn2">
+              <div class="call-button touchOpenTrigger">
+                <i class="fa-solid fa-phone"></i>
+              </div>
               <a href="#" class="btn book-call-btn">Book Discovery Call</a>
             </div>
 
@@ -326,7 +215,6 @@
           <li>Local Expertise with Global Standards</li>
           <li>Reliable Support & Training</li>
         </ul>
-       
       </div>
       <div class="about-image">
         <img src="/img/features/feature-img3.jpg" alt="Team collaboration" />
@@ -383,9 +271,7 @@
             </p>
             <div class="stars">★★★★★</div>
           </div>
-
-       
-            
+        </div>
       </div>
     </section>
 
@@ -439,7 +325,7 @@
       </div>
     </section>
 
-      <!-- ===================== HITech Footer (all text forced to white) ===================== -->
+    <!-- ===================== HITech Footer (all text forced to white) ===================== -->
     <footer class="rq-footer mt-40">
       <!-- background layers -->
       <span class="rq-dots" aria-hidden="true"></span>
@@ -745,5 +631,36 @@
     <script src="js/dzsparallaxer.js"></script>
     <!-- Active js -->
     <script src="js/script.js"></script>
+    <!-- side baar script  -->
+    <script>
+      const panel = document.getElementById("touchPanel");
+      const overlay = document.getElementById("touchOverlay");
+      const closeBtn = document.getElementById("touchCloseBtn");
+
+      // Get all elements that can open the panel
+      const openTriggers = document.querySelectorAll(".touchOpenTrigger");
+
+      function openPanel() {
+        panel.classList.add("touch-active");
+        overlay.classList.add("touch-overlay-show");
+      }
+
+      function closePanel() {
+        panel.classList.remove("touch-active");
+        overlay.classList.remove("touch-overlay-show");
+      }
+
+      // Attach open event to all triggers
+      openTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", (e) => {
+          e.preventDefault();
+          openPanel();
+        });
+      });
+
+      // Close buttons
+      closeBtn.addEventListener("click", closePanel);
+      overlay.addEventListener("click", closePanel);
+    </script>
   </body>
 </html>

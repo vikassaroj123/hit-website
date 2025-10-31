@@ -444,6 +444,38 @@
       </div>
     </aside>
     <div class="touch-overlay" id="touchOverlay"></div>
+    <!-- Popup Modal -->
+    <div id="zohoPopup" class="zoho-popup">
+      <div class="zoho-popup-content">
+        <span class="zoho-close" id="closePopup">&times;</span>
+        <div class="zoho-popup-header">
+          <img
+            src="img/authorized-badge-ne.png"
+            alt="Zoho Logo"
+            style="height: 40px; margin-bottom: 10px"
+          />
+          <h3>Saudi National Day 95 with Zoho</h3>
+          <p class="offer">
+            🎉 Get <strong>20% OFF</strong> — Celebrate Progress with Zoho!
+          </p>
+        </div>
+
+        <p class="subtext">
+          Book your free consultation today and be part of the celebration.
+        </p>
+
+        <form class="zoho-form">
+          <input type="text" placeholder="Full Name" required />
+          <input type="email" placeholder="Email" required />
+          <input type="text" placeholder="Phone" required />
+          <input type="text" placeholder="Company" required />
+          <button type="submit" class="zoho-btn">Book Now</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="popupOverlay" class="popup-overlay"></div>
 
     <div class="clearfix"></div>
 
@@ -1444,6 +1476,7 @@
     <script src="js/dzsparallaxer.js"></script>
 
     <script src="js/jquery.syotimer.min.js"></script>
+    <!-- side baar script  -->
     <script>
       const panel = document.getElementById("touchPanel");
       const overlay = document.getElementById("touchOverlay");
@@ -1473,6 +1506,30 @@
       // Close buttons
       closeBtn.addEventListener("click", closePanel);
       overlay.addEventListener("click", closePanel);
+    </script>
+
+    <!-- Script -->
+    <script>
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          document.getElementById("zohoPopup").style.display = "flex";
+          document.getElementById("popupOverlay").style.display = "block";
+        }, 5000); // 5 seconds
+      });
+
+      document
+        .getElementById("closePopup")
+        .addEventListener("click", function () {
+          document.getElementById("zohoPopup").style.display = "none";
+          document.getElementById("popupOverlay").style.display = "none";
+        });
+
+      document
+        .getElementById("popupOverlay")
+        .addEventListener("click", function () {
+          document.getElementById("zohoPopup").style.display = "none";
+          document.getElementById("popupOverlay").style.display = "none";
+        });
     </script>
 
     <!-- script js -->
