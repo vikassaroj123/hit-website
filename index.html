@@ -235,31 +235,23 @@
                       </li>
                     </ul>
                   </li>
-                  <!-- Resources Dropdown -->
-                  <!-- <li>
-                    <a href="#">Resources</a>
-                    <ul class="dropdown" style="width: max-content">
-                      <li><a href="#">Blogs </a></li>
-                      <li><a href="#">Case Studies </a></li>
-                    </ul>
-                  </li> -->
 
                   <li><a href="/about-us.html">About us</a></li>
                   <li><a href="/contact-us.html">Contact us</a></li>
                 </ul>
                 <div class="book-btn">
-                  <a href="#" class="btn book-call-btn" id="touchOpenBtn"
-                    >Book Discovery Call</a
-                  >
+                  <div class="call-button touchOpenTrigger">
+                    <i class="fa-solid fa-phone"></i>
+                  </div>
+                  <a href="#" class="btn book-call-btn">Book Discovery Call</a>
                 </div>
-
-                <!-- Button -->
               </div>
             </div>
             <div class="book-btn2">
-              <a href="#" class="btn book-call-btn" id="touchOpenBtnMobile"
-                >Book Discovery Call</a
-              >
+              <div class="call-button touchOpenTrigger">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <a href="#" class="btn book-call-btn">Book Discovery Call</a>
             </div>
 
             <!-- Nav End -->
@@ -425,7 +417,7 @@
             <i class="fa-solid fa-location-dot touch-icon"></i>
             <div class="touch-text">
               <p class="touch-address">
-                UGB04, Tower T2, NX ONE, Noida, 201306
+                Office 8, Second Floor, C4, Sector 63, Noida, India
               </p>
               <span class="touch-subtext">Visit Our Office</span>
             </div>
@@ -452,118 +444,6 @@
       </div>
     </aside>
     <div class="touch-overlay" id="touchOverlay"></div>
-
-    <aside class="touch-panel">
-      <!-- Request a Quote Form -->
-      <div class="touch-quote">
-        <h2 class="touch-title">Request A Quote</h2>
-
-        <form class="touch-form">
-          <input
-            type="text"
-            placeholder="Enter name"
-            class="touch-input"
-            required
-          />
-          <input
-            type="email"
-            placeholder="Enter email"
-            class="touch-input"
-            required
-          />
-          <input type="text" placeholder="Enter company" class="touch-input" />
-          <input type="tel" placeholder="Enter mobile" class="touch-input" />
-          <textarea
-            placeholder="Enter your message"
-            class="touch-textarea"
-            rows="3"
-          ></textarea>
-
-          <button type="submit" class="touch-btn">Submit</button>
-        </form>
-      </div>
-
-      <!-- Divider -->
-      <hr class="touch-divider" />
-
-      <!-- Get in Touch Section -->
-      <div class="touch-contact">
-        <h2 class="touch-title">Get In Touch</h2>
-        <p class="touch-description">
-          Please fill out the form below if you have a plan or project in mind
-          that you'd like to share with us.
-        </p>
-
-        <div class="touch-contact-list">
-          <div class="touch-item">
-            <i class="fa-solid fa-phone touch-icon"></i>
-            <div class="touch-text">
-              <p>
-                <a href="tel:+919565153545" class="touch-link"
-                  >+91-9565153545</a
-                >
-              </p>
-              <span class="touch-subtext">Mon-Sat 9am - 6pm</span>
-            </div>
-          </div>
-
-          <div class="touch-item">
-            <i class="fa-brands fa-whatsapp touch-icon"></i>
-            <div class="touch-text">
-              <p>
-                <a
-                  href="https://wa.me/919565153545"
-                  target="_blank"
-                  class="touch-link"
-                  >+91-9565153545</a
-                >
-              </p>
-              <span class="touch-subtext">Mon-Sat 9am - 6pm</span>
-            </div>
-          </div>
-
-          <div class="touch-item">
-            <i class="fa-solid fa-envelope touch-icon"></i>
-            <div class="touch-text">
-              <p>
-                <a href="mailto:contact@shyphan.com" class="touch-link"
-                  >contact@shyphan.com</a
-                >
-              </p>
-              <span class="touch-subtext">Online Support</span>
-            </div>
-          </div>
-
-          <div class="touch-item">
-            <i class="fa-solid fa-location-dot touch-icon"></i>
-            <div class="touch-text">
-              <p class="touch-address">
-                UGB04, Tower T2, NX ONE, Noida, 201306
-              </p>
-              <span class="touch-subtext">Visit Our Office</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="touch-social">
-          <a href="#" class="touch-social-link"
-            ><i class="fab fa-facebook-f"></i
-          ></a>
-          <a href="#" class="touch-social-link"
-            ><i class="fab fa-twitter"></i
-          ></a>
-          <a href="#" class="touch-social-link"
-            ><i class="fab fa-instagram"></i
-          ></a>
-          <a href="#" class="touch-social-link"
-            ><i class="fab fa-linkedin-in"></i
-          ></a>
-          <a href="#" class="touch-social-link"
-            ><i class="fab fa-youtube"></i
-          ></a>
-        </div>
-      </div>
-    </aside>
 
     <div class="clearfix"></div>
 
@@ -1566,10 +1446,11 @@
     <script src="js/jquery.syotimer.min.js"></script>
     <script>
       const panel = document.getElementById("touchPanel");
-      const openBtnDesktop = document.getElementById("touchOpenBtn");
-      const openBtnMobile = document.getElementById("touchOpenBtnMobile");
-      const closeBtn = document.getElementById("touchCloseBtn");
       const overlay = document.getElementById("touchOverlay");
+      const closeBtn = document.getElementById("touchCloseBtn");
+
+      // Get all elements that can open the panel
+      const openTriggers = document.querySelectorAll(".touchOpenTrigger");
 
       function openPanel() {
         panel.classList.add("touch-active");
@@ -1581,16 +1462,15 @@
         overlay.classList.remove("touch-overlay-show");
       }
 
-      openBtnDesktop.addEventListener("click", (e) => {
-        e.preventDefault();
-        openPanel();
+      // Attach open event to all triggers
+      openTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", (e) => {
+          e.preventDefault();
+          openPanel();
+        });
       });
 
-      openBtnMobile.addEventListener("click", (e) => {
-        e.preventDefault();
-        openPanel();
-      });
-
+      // Close buttons
       closeBtn.addEventListener("click", closePanel);
       overlay.addEventListener("click", closePanel);
     </script>
