@@ -19,6 +19,11 @@
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="css/navbar.css " />
     <link rel="stylesheet" href="css/about-page.css" />
+    <link rel="stylesheet" href="css/get-in-touch.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
   </head>
 
   <body class="light-version">
@@ -204,7 +209,7 @@
     <!-- About Section -->
     <section class="about">
       <div class="about-text">
-        <h2>Your Trusted Digital Partner in Saudi Arabia</h2>
+        <h2>Your Trusted Digital Partner in India</h2>
         <p>
           At HITech Pvt Ltd, we specialize in delivering tailored business
           solutions to help organizations digitize and streamline their
@@ -220,6 +225,145 @@
         <img src="/img/features/feature-img3.jpg" alt="Team collaboration" />
       </div>
     </section>
+    <!-- get in touch side bar  -->
+    <!-- ===== Contact Panel (Hidden by default) ===== -->
+    <aside class="touch-panel" id="touchPanel">
+      <button class="touch-close-btn" id="touchCloseBtn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Request a Quote Form -->
+      <div class="touch-quote">
+        <h2 class="touch-title">Request A Quote</h2>
+        <form class="touch-form">
+          <input
+            type="text"
+            placeholder="Enter name"
+            class="touch-input"
+            required
+          />
+          <input
+            type="email"
+            placeholder="Enter email"
+            class="touch-input"
+            required
+          />
+          <input type="text" placeholder="Enter company" class="touch-input" />
+          <input type="tel" placeholder="Enter mobile" class="touch-input" />
+          <textarea
+            placeholder="Enter your message"
+            class="touch-textarea"
+            rows="3"
+          ></textarea>
+          <button type="submit" class="touch-btn">Submit</button>
+        </form>
+      </div>
+
+      <hr class="touch-divider" />
+
+      <!-- Get In Touch Section -->
+      <div class="touch-contact">
+        <h2 class="touch-title">Get In Touch</h2>
+        <p class="touch-description">
+          Please fill out the form below if you have a plan or project in mind
+          that you'd like to share with us.
+        </p>
+
+        <div class="touch-contact-list">
+          <div class="touch-item">
+            <i class="fa-solid fa-phone touch-icon"></i>
+            <div class="touch-text">
+              <p>
+                <a href="tel:++918129031222" class="touch-link"
+                  >+91-8129031222</a
+                >
+              </p>
+              <span class="touch-subtext">Mon-Sat 9am - 6pm</span>
+            </div>
+          </div>
+
+          <div class="touch-item">
+            <i class="fa-brands fa-whatsapp touch-icon"></i>
+            <div class="touch-text">
+              <p>
+                <a
+                  href="https://wa.me/8129031222"
+                  target="_blank"
+                  class="touch-link"
+                  >+91-8129031222</a
+                >
+              </p>
+              <span class="touch-subtext">Mon-Sat 9am - 6pm</span>
+            </div>
+          </div>
+
+          <div class="touch-item">
+            <i class="fa-solid fa-envelope touch-icon"></i>
+            <div class="touch-text">
+              <p>
+                <a href="mailto:contact@shyphan.com" class="touch-link"
+                  >admin@hitech.com.in</a
+                >
+              </p>
+              <span class="touch-subtext">Online Support</span>
+            </div>
+          </div>
+
+          <div class="touch-item">
+            <i class="fa-solid fa-location-dot touch-icon"></i>
+            <div class="touch-text">
+              <p class="touch-address">
+                Office 8, Second Floor, C4, Sector 63, Noida, India
+              </p>
+              <span class="touch-subtext">Visit Our Office</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="touch-social">
+          <a href="#" class="touch-social-link"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" class="touch-social-link"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="#" class="touch-social-link"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" class="touch-social-link"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <a href="#" class="touch-social-link"
+            ><i class="fab fa-youtube"></i
+          ></a>
+        </div>
+      </div>
+    </aside>
+    <div class="touch-overlay" id="touchOverlay"></div>
+    <!-- whatsapp icons  -->
+    <div>
+      <a
+        href="#"
+        aria-label="WhatsApp"
+        style="
+          position: fixed;
+          left: 20px;
+          bottom: 20px;
+          background-color: #25d366;
+          color: white;
+          font-size: 28px;
+          width: 70px;
+          padding: 12px 14px;
+          border-radius: 50%;
+          text-align: center;
+          text-decoration: none;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+          z-index: 1000;
+        "
+      >
+        <i class="fa fa-whatsapp"></i>
+      </a>
+    </div>
 
     <!-- Testimonial Section -->
     <section class="testimonials">
