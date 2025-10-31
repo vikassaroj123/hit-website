@@ -1,0 +1,222 @@
+/* === Base Reset === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+/* === Overlay Background (Blur effect) === */
+.touch-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+.touch-overlay-show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* === Contact Panel (Right Side) === */
+.touch-panel {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 420px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+  transition: right 0.4s ease;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 40px 30px;
+}
+
+.touch-active {
+  right: 0;
+}
+
+/* === Close Button === */
+.touch-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: #f1f1f1;
+  border: none;
+  font-size: 20px;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.touch-close-btn:hover {
+  background: #ff4f70;
+  color: #fff;
+}
+
+/* === Section Titles === */
+.touch-title {
+  color: #0b1651;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* === Quote Form === */
+.touch-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.touch-input,
+.touch-textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.touch-input:focus,
+.touch-textarea:focus {
+  border-color: #ff4f70;
+  outline: none;
+}
+
+.touch-btn {
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  border: none;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.touch-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* === Divider Line === */
+.touch-divider {
+  margin: 25px 0;
+  border: none;
+  border-top: 1px solid #eee;
+}
+
+/* === Contact Section === */
+.touch-description {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.touch-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.touch-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.touch-icon {
+  font-size: 18px;
+  color: #ff4f70;
+  margin-top: 3px;
+}
+
+.touch-link {
+  color: #0b1651;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.touch-link:hover {
+  color: #ff4f70;
+}
+
+.touch-subtext {
+  font-size: 12px;
+  color: #777;
+}
+
+.touch-address {
+  color: #0b1651;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* === Social Icons === */
+.touch-social {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.touch-social-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background: #f1f1f1;
+  border-radius: 50%;
+  color: #0b1651;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.touch-social-link:hover {
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* === Scrollbar Styling === */
+.touch-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.touch-panel::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+}
+
+.touch-panel::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 768px) {
+  .touch-panel {
+    width: 100%;
+    right: -100%;
+    padding: 25px 20px;
+  }
+
+  .touch-active {
+    right: 0;
+  }
+
+  .touch-title {
+    font-size: 20px;
+  }
+}
