@@ -871,6 +871,7 @@
     <script src="/js/dzsparallaxer.js"></script>
     <script src="/js/script.js"></script>
     <!-- side baar script  -->
+    <!-- side baar script  -->
     <script>
       const panel = document.getElementById("touchPanel");
       const overlay = document.getElementById("touchOverlay");
@@ -893,6 +894,7 @@
       openTriggers.forEach((trigger) => {
         trigger.addEventListener("click", (e) => {
           e.preventDefault();
+          e.stopPropagation(); // 🚫 Stop event from reaching the navbar toggler
           openPanel();
         });
       });

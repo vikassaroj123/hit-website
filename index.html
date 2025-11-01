@@ -60,7 +60,7 @@
             </a>
 
             <!-- Navbar Toggler -->
-            <div class="classy-navbar-toggler demo" >
+            <div class="classy-navbar-toggler demo">
               <div class="call-button touchOpenTrigger">
                 <i class="fa-solid fa-phone"></i>
               </div>
@@ -480,7 +480,7 @@
             alt="Zoho Logo"
             style="height: 40px; margin-bottom: 10px"
           />
-          <h3>India National Day 95 with Zoho</h3>
+          <!-- <h3></h3> -->
           <p class="offer">
             🎉 Get <strong>20% OFF</strong> — Celebrate Progress with Zoho!
           </p>
@@ -1525,6 +1525,7 @@
       openTriggers.forEach((trigger) => {
         trigger.addEventListener("click", (e) => {
           e.preventDefault();
+          e.stopPropagation(); // 🚫 Stop event from reaching the navbar toggler
           openPanel();
         });
       });
@@ -1534,7 +1535,7 @@
       overlay.addEventListener("click", closePanel);
     </script>
 
-    <!-- Script -->
+    <!-- call  Script -->
     <script>
       window.addEventListener("load", function () {
         setTimeout(function () {

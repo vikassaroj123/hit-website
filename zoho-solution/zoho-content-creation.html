@@ -316,7 +316,7 @@
         <i class="fa fa-whatsapp"></i>
       </a>
     </div>
-    
+
     <!-- About Section -->
     <section class="about striples-bg">
       <div class="about-text">
@@ -884,6 +884,7 @@
       openTriggers.forEach((trigger) => {
         trigger.addEventListener("click", (e) => {
           e.preventDefault();
+          e.stopPropagation(); // 🚫 Stop event from reaching the navbar toggler
           openPanel();
         });
       });

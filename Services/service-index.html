@@ -652,7 +652,7 @@
             </p>
             <p class="rq-contact">
               <i class="fa fa-phone" aria-hidden="true"></i>
-              <a href="tel:+910000000000">+91 9565153545</a>
+              <a href="tel:+910000000000">+91-8129031222</a>
             </p>
           </div>
 
@@ -660,11 +660,15 @@
           <div class="rq-col rq-col-middle">
             <h3 class="rq-h3">Explore</h3>
             <ul class="rq-links">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Zoho Services</a></li>
-              <li><a href="#">Zoho CRM</a></li>
+              <li><a href="/about-us.html">About Us</a></li>
+              <li><a href="/Services/service-index.html">Zoho Services</a></li>
+              <li><a href="/zoho-solution/zoho-crm.html">Zoho CRM</a></li>
               <li><a href="#">Zoho Books (GST)</a></li>
-              <li><a href="#">Zoho Creator</a></li>
+              <li>
+                <a href="/zoho-solution/zoho-content-creation.html"
+                  >Zoho Creator</a
+                >
+              </li>
             </ul>
           </div>
 
@@ -712,11 +716,6 @@
           <div class="rq-bottom-right"><a href="#">Privacy Policy</a></div>
         </div>
       </div>
-
-      <!-- WhatsApp bubble -->
-      <a class="rq-wa" href="#" aria-label="WhatsApp">
-        <i class="fa fa-whatsapp"></i>
-      </a>
 
       <!-- ===================== Styles ===================== -->
       <style>
@@ -975,6 +974,7 @@
       openTriggers.forEach((trigger) => {
         trigger.addEventListener("click", (e) => {
           e.preventDefault();
+          e.stopPropagation(); // 🚫 Stop event from reaching the navbar toggler
           openPanel();
         });
       });
