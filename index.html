@@ -634,6 +634,25 @@
               
               // Add Lead Source
               var leadSourceField = document.getElementById('Lead_Source');
+              
+              // Ensure Lead Source is set right before submission
+              var path = window.location.pathname;
+              var filename = path.split('/').pop() || 'index';
+              filename = filename.replace(/\.html$/, '');
+              
+              if(filename === 'index' || filename === '' || filename === '/') {
+                filename = 'Home';
+              } else {
+                filename = filename.split('-').map(function(word){
+                  return word.charAt(0).toUpperCase() + word.slice(1);
+                }).join(' ');
+              }
+              
+              var leadSourceValue = 'Vikas HITech - ' + filename;
+              if(leadSourceField) {
+                leadSourceField.value = leadSourceValue;
+              }
+              
               if(leadSourceField && leadSourceField.value) {
                 formData.append('Lead Source', leadSourceField.value);
               }

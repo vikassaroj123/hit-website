@@ -575,8 +575,24 @@
               
               // Add Lead Source
               var leadSourceField = document.getElementById('Lead_Source');
-              if(leadSourceField && leadSourceField.value) {
-                formData.append('Lead Source', leadSourceField.value);
+              
+              // Ensure Lead Source is set right before submission
+              var path = window.location.pathname;
+              var filename = path.split('/').pop() || 'index';
+              filename = filename.replace(/\.html$/, '');
+              
+              if(filename === 'index' || filename === '' || filename === '/') {
+                filename = 'Home';
+              } else {
+                filename = filename.split('-').map(function(word){
+                  return word.charAt(0).toUpperCase() + word.slice(1);
+                }).join(' ');
+              }
+              
+              var leadSourceValue = 'Vikas HITech - ' + filename;
+              if(leadSourceField) {
+                leadSourceField.value = leadSourceValue;
+                formData.append('Lead Source', leadSourceValue);
               }
               
               // Add Full Name as single field (not split into First/Last Name)
@@ -1363,8 +1379,13 @@
           formData.append('returnURL', 'null');
           formData.append('aG9uZXlwb3Q', '');
           
+          // Set Lead Source for main contact form right before submission
           var leadSourceField = document.getElementById('Lead_Source_Main');
-          if(leadSourceField && leadSourceField.value) formData.append('Lead Source', leadSourceField.value);
+          if(leadSourceField) {
+            var leadSourceValue = 'Vikas HITech - Contact Us';
+            leadSourceField.value = leadSourceValue;
+            formData.append('Lead Source', leadSourceValue);
+          }
           
           // Add Full Name as single field (not split)
           if(fullNameField && fullNameField.value) {
