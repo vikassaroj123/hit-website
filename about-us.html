@@ -644,26 +644,29 @@
               formData.append('returnURL', 'null');
               formData.append('aG9uZXlwb3Q', '');
               
-                            // Add Lead Source - Set it right before submission to ensure it has a value
+              // Add Lead Source
               var leadSourceField = document.getElementById('Lead_Source');
-              if(leadSourceField) {
-                // Set Lead Source dynamically right before submission
-                var path = window.location.pathname;
-                var filename = path.split('/').pop() || 'index';
-                filename = filename.replace(/\.html$/, '');
-                
-                if(filename === 'index' || filename === '' || filename === '/') {
-                  filename = 'Home';
-                } else {
-                  filename = filename.split('-').map(function(word){
-                    return word.charAt(0).toUpperCase() + word.slice(1);
-                  }).join(' ');
-                }
-                
-                var leadSourceValue = 'Vikas HITech - ' + filename;
-                leadSourceField.value = leadSourceValue;
-                formData.append('Lead Source', leadSourceValue);
+              
+              // Ensure Lead Source is set right before submission
+              var path = window.location.pathname;
+              var filename = path.split('/').pop() || 'index';
+              filename = filename.replace(/\.html$/, '');
+              
+              if(filename === 'index' || filename === '' || filename === '/') {
+                filename = 'Home';
+              } else {
+                filename = filename.split('-').map(function(word){
+                  return word.charAt(0).toUpperCase() + word.slice(1);
+                }).join(' ');
               }
+              
+              var leadSourceValue = 'Vikas HITech - ' + filename;
+              if(leadSourceField) {
+                leadSourceField.value = leadSourceValue;
+              }
+              
+              if(leadSourceField && leadSourceField.value) {
+                formData.append('Lead Source', leadSourceField.value);
               }
               
               // Add First Name and Last Name (from split Full Name)
@@ -692,18 +695,18 @@
               $.ajax({
                 url:'https://crm.zoho.com/crm/WebToLeadForm',
                 type:'POST',
+                data:formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                crossDomain: true,
                 xhrFields: {
                   withCredentials: false
                 },
                 beforeSend: function(xhr) {
                   xhr.setRequestHeader('Accept', '*/*');
                 },
-                data:formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                crossDomain: true,
-                success: function(response){
+                success: function(response, textStatus, xhr){
                   console.log('Form submission successful:', response);
                   
                   // Hide error message if showing
