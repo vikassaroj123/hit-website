@@ -660,16 +660,22 @@
               var descField = document.getElementById('Description');
               if(descField && descField.value) formData.append('Description', descField.value);
               
-              // Submit to Zoho .com.in domain
+              // Submit to Zoho .com domain (from .com.in website)
               $.ajax({
-                url:'https://crm.zoho.com.in/crm/WebToLeadForm',
+                url:'https://crm.zoho.com/crm/WebToLeadForm',
                 type:'POST',
                 data:formData,
                 cache: false,
                 contentType: false,
                 processData: false,
                 crossDomain: true,
-                success: function(response){
+                xhrFields: {
+                  withCredentials: false
+                },
+                beforeSend: function(xhr) {
+                  xhr.setRequestHeader('Accept', '*/*');
+                },
+                success: function(response, textStatus, xhr){
                   console.log('Form submission successful:', response);
                   
                   // Hide error message if showing
@@ -688,6 +694,11 @@
                   var form = document.getElementById('webform6827347000001546003');
                   if(form) {
                     form.reset();
+                    // Reset hidden fields
+                    var firstNameHidden = document.getElementById('First_Name_Hidden');
+                    var lastNameHidden = document.getElementById('Last_Name_Hidden');
+                    if(firstNameHidden) firstNameHidden.value = '';
+                    if(lastNameHidden) lastNameHidden.value = '';
                   }
                   
                   // Also show popup message if exists
@@ -706,6 +717,7 @@
                 },
                 error: function(xhr, status, error){
                   console.error('Form submission error:', status, error, xhr);
+                  console.error('Response:', xhr.responseText);
                   
                   // Hide success message if showing
                   if(successMsg) successMsg.style.display = 'none';
@@ -2089,16 +2101,22 @@
           if(mobileField && mobileField.value) formData.append('Mobile', mobileField.value);
           if(companyField && companyField.value) formData.append('Company', companyField.value);
           
-          // Submit to Zoho .com.in
+          // Submit to Zoho .com domain (from .com.in website)
           $.ajax({
-            url:'https://crm.zoho.com.in/crm/WebToLeadForm',
+            url:'https://crm.zoho.com/crm/WebToLeadForm',
             type:'POST',
             data:formData,
             cache: false,
             contentType: false,
             processData: false,
             crossDomain: true,
-            success: function(response){
+            xhrFields: {
+              withCredentials: false
+            },
+            beforeSend: function(xhr) {
+              xhr.setRequestHeader('Accept', '*/*');
+            },
+            success: function(response, textStatus, xhr){
               console.log('Popup form submission successful:', response);
               
               if(popupErrorMsg) popupErrorMsg.style.display = 'none';
@@ -2110,12 +2128,18 @@
               }
               
               popupForm.reset();
+              // Reset hidden fields
+              var firstNameHidden = document.getElementById('First_Name_Hidden_Popup');
+              var lastNameHidden = document.getElementById('Last_Name_Hidden_Popup');
+              if(firstNameHidden) firstNameHidden.value = '';
+              if(lastNameHidden) lastNameHidden.value = '';
               setPopupLeadSource();
               
               if(submitBtn) submitBtn.removeAttribute('disabled');
             },
             error: function(xhr, status, error){
               console.error('Popup form submission error:', status, error, xhr);
+              console.error('Response:', xhr.responseText);
               
               if(popupSuccessMsg) popupSuccessMsg.style.display = 'none';
               if(popupErrorMsg) {

@@ -491,10 +491,16 @@
               var descField = document.getElementById('Description');
               if(descField && descField.value) formData.append('Description', descField.value);
               
-              // Submit to Zoho .com.in domain
+              // Submit to Zoho .com domain (from .com.in website)
               $.ajax({
-                url:'https://crm.zoho.com.in/crm/WebToLeadForm',
-                type:'POST',
+                url:'https://crm.zoho.com/crm/WebToLeadForm',
+                
+                xhrFields: {
+                  withCredentials: false
+                },
+                beforeSend: function(xhr) {
+                  xhr.setRequestHeader('Accept', '*/*');
+                ,type:'POST',
                 data:formData,
                 cache: false,
                 contentType: false,
