@@ -278,32 +278,394 @@
 
       <!-- Request a Quote Form -->
       <div class="touch-quote">
+        <!-- Request a Quote Form - Zoho CRM Integration -->
+      <div class="touch-quote">
         <h2 class="touch-title">Request A Quote</h2>
-        <form class="touch-form">
+        <!-- Zoho Success Message Box Styles -->
+        <style>
+          .wf_customMessageBox{
+            font-family: Arial, Helvetica, sans-serif;
+            color: #132C14;
+            background: #F5FAF5;
+            box-shadow: 0 2px 6px 0 rgba(0,0,0,0.25);
+            max-width: 90%;
+            width: max-content;
+            word-break: break-word;
+            z-index: 11000;
+            border-radius: 6px;
+            border: 1px solid #A9D3AB;
+            min-width: 100px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translate(-50%, 0);
+          }
+          .wf_customCircle{
+            position: relative;
+            background-color: #12AA67;
+            border-radius: 100%;
+            width: 20px;
+            height: 20px;
+            flex: none;
+            margin-right: 7px;
+          }
+          .wf_customCheckMark{
+            box-sizing: unset !important;
+            position: absolute;
+            transform: rotate(45deg)translate(-50%, -50%);
+            left: 6px;
+            top: 9px;
+            height: 8px;
+            width: 3px;
+            border-bottom: 2px solid #fff;
+            border-right: 2px solid #fff;
+          }
+        </style>
+
+        <div class="wf_customMessageBox" id="wf_splash" style="display:none">
+          <div class="wf_customCircle">
+            <div class="wf_customCheckMark"></div>
+          </div>
+          <span id="wf_splash_info"></span>
+        </div>
+
+        <!-- Simple Form with Original Design - Zoho CRM Integrated -->
+        <form id="webform6827347000001546003" name="WebToLeads6827347000001546003" class="touch-form" accept-charset="UTF-8">
+          <!-- Zoho CRM Hidden Fields -->
+          <input type="text" style="display:none;" name="xnQsjsdp" value="7fe14ecc1055901858ecd38b1c19f3b3f39994b28c40cea152d2324b03cf0607">
+          <input type="hidden" name="zc_gad" id="zc_gad" value="">
+          <input type="text" style="display:none;" name="xmIwtLD" value="678315dc464bc70db6cc804646a531b0e9c4c7238f042f8466ef9842870a629862854540cc4b1b34fd9820aca8af7a5e">
+          <input type="text" style="display:none;" name="actionType" value="TGVhZHM=">
+          <input type="text" style="display:none;" name="returnURL" value="null">
+          <input type="text" style="display: none;" name="aG9uZXlwb3Q" value=""/>
+          
+          <!-- Lead Source Field - Dynamically set by JavaScript -->
+          <input type="hidden" name="Lead Source" id="Lead_Source" value="">
+          <!-- Hidden fields for First Name and Last Name (populated from Name field) -->
+          <input type="hidden" name="First Name" id="First_Name_Hidden" value="">
+          <input type="hidden" name="Last Name" id="Last_Name_Hidden" value="">
+
+          <!-- Simple Form Fields with Original Design -->
           <input
             type="text"
+            id="fullName"
             placeholder="Enter name"
             class="touch-input"
             required
           />
           <input
             type="email"
+            id="Email"
+            ftype="email"
             placeholder="Enter email"
             class="touch-input"
             required
           />
-          <input type="text" placeholder="Enter company" class="touch-input" />
-          <input type="tel" placeholder="Enter mobile" class="touch-input" />
+          <input type="text" id="Company" placeholder="Enter company" class="touch-input" />
+          <input type="tel" id="Mobile" placeholder="Enter mobile" class="touch-input" />
           <textarea
+            id="Description"
             placeholder="Enter your message"
             class="touch-textarea"
             rows="3"
           ></textarea>
           <button type="submit" class="touch-btn">Submit</button>
         </form>
-      </div>
+        
+        <!-- Success Message - Shown after form submission (outside form) -->
+        <div id="form-success-message" style="display: none; margin-top: 20px; padding: 15px; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; color: #155724; text-align: center;">
+          <strong>Thank you for contacting us!</strong><br>
+          We will contact you shortly.
+        </div>
+        
+        <!-- Error Message - Shown if submission fails (outside form) -->
+        <div id="form-error-message" style="display: none; margin-top: 20px; padding: 15px; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px; color: #721c24; text-align: center;">
+          <strong>Error:</strong> Please try again or contact us directly.
+        </div>
 
-      <hr class="touch-divider" />
+        <script>
+          function validateEmail6827347000001546003(){
+            var emailFld = document.getElementById('Email');
+            if(emailFld){
+              var emailVal = emailFld.value;
+              if((emailVal.replace(/^\s+|\s+$/g,'')).length != 0){
+                var atpos = emailVal.indexOf('@');
+                var dotpos = emailVal.lastIndexOf('.');
+                if(atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length){
+                  alert('Please enter a valid email address.');
+                  emailFld.focus();
+                  return false;
+                }
+              }
+            }
+            return true;
+          }
+
+          function splitName(fullName){
+            // Split name into first and last name
+            var nameParts = fullName.trim().split(/\s+/);
+            var firstName = '';
+            var lastName = '';
+            
+            if(nameParts.length === 0){
+              return {firstName: '', lastName: ''};
+            } else if(nameParts.length === 1){
+              lastName = nameParts[0];
+            } else {
+              // First name is everything except last word
+              firstName = nameParts.slice(0, -1).join(' ');
+              // Last name is the last word
+              lastName = nameParts[nameParts.length - 1];
+            }
+            
+            return {firstName: firstName, lastName: lastName};
+          }
+
+          function checkMandatory6827347000001546003(){
+            var fullNameField = document.getElementById('fullName');
+            var emailField = document.getElementById('Email');
+            
+            // Check if name is filled
+            if(!fullNameField || ((fullNameField.value).replace(/^\s+|\s+$/g,'')).length == 0){
+              alert('Name cannot be empty.');
+              if(fullNameField) fullNameField.focus();
+              return false;
+            }
+            
+            // Split name and populate hidden fields
+            var nameParts = splitName(fullNameField.value);
+            var firstNameField = document.getElementById('First_Name_Hidden');
+            var lastNameField = document.getElementById('Last_Name_Hidden');
+            
+            if(firstNameField) firstNameField.value = nameParts.firstName;
+            if(lastNameField) lastNameField.value = nameParts.lastName;
+            
+            // Check if last name is empty (required by Zoho)
+            if(!lastNameField || lastNameField.value.length == 0){
+              alert('Please enter your full name (first and last name).');
+              if(fullNameField) fullNameField.focus();
+              return false;
+            }
+            
+            // Validate email
+            if(!validateEmail6827347000001546003()){
+              return false;
+            }
+
+            // Set Lead Source dynamically before submit
+            var path = window.location.pathname;
+            var filename = path.split('/').pop() || 'index';
+            filename = filename.replace(/\.html$/, '');
+            
+            if(filename === 'index' || filename === '' || filename === '/') {
+              filename = 'Home';
+            } else {
+              filename = filename.split('-').map(function(word){
+                return word.charAt(0).toUpperCase() + word.slice(1);
+              }).join(' ');
+            }
+            
+            var leadSourceValue = 'Vikas Saroj - ' + filename;
+            var leadSourceField = document.getElementById('Lead_Source');
+            if(leadSourceField){
+              leadSourceField.value = leadSourceValue;
+            }
+
+            var urlparams = new URLSearchParams(window.location.search);
+            if(urlparams.has('service') && (urlparams.get('service') === 'smarturl')){
+              var webform = document.getElementById('webform6827347000001546003');
+              var service = urlparams.get('service');
+              var smarturlfield = document.createElement('input');
+              smarturlfield.setAttribute('type','hidden');
+              smarturlfield.setAttribute('value',service);
+              smarturlfield.setAttribute('name','service');
+              webform.appendChild(smarturlfield);
+            }
+
+            var submitBtn = document.querySelector('#webform6827347000001546003 button[type="submit"]');
+            if(submitBtn) submitBtn.setAttribute('disabled', true);
+            return true;
+          }
+
+          // Wait for jQuery to be available
+          function initForm() {
+            if (typeof jQuery === 'undefined') {
+              setTimeout(initForm, 100);
+              return;
+            }
+
+            var $ = jQuery;
+            
+            // Set Lead Source on page load
+            function setLeadSourceValue(){
+              var path = window.location.pathname;
+              var filename = path.split('/').pop() || 'index';
+              filename = filename.replace(/\.html$/, '');
+              
+              if(filename === 'index' || filename === '' || filename === '/') {
+                filename = 'Home';
+              } else {
+                filename = filename.split('-').map(function(word){
+                  return word.charAt(0).toUpperCase() + word.slice(1);
+                }).join(' ');
+              }
+              
+              var leadSourceValue = 'Vikas Saroj - ' + filename;
+              var leadSourceField = document.getElementById('Lead_Source');
+              if(leadSourceField){
+                leadSourceField.value = leadSourceValue;
+              }
+            }
+            setLeadSourceValue();
+
+            // Hide messages initially
+            var successMsg = document.getElementById('form-success-message');
+            var errorMsg = document.getElementById('form-error-message');
+            if(successMsg) successMsg.style.display = 'none';
+            if(errorMsg) errorMsg.style.display = 'none';
+
+            $('#webform6827347000001546003').submit(function(e){
+              e.preventDefault();
+              
+              // Hide previous messages
+              if(successMsg) successMsg.style.display = 'none';
+              if(errorMsg) errorMsg.style.display = 'none';
+              
+              var ismandatory = checkMandatory6827347000001546003();
+              
+              if(!ismandatory){
+                var submitBtn = document.querySelector('#webform6827347000001546003 button[type="submit"]');
+                if(submitBtn) submitBtn.removeAttribute('disabled');
+                return false;
+              }
+              
+              if(typeof _wfa_track != 'undefined' && _wfa_track.wfa_submit){
+                _wfa_track.wfa_submit(e);
+              }
+              
+              var submitBtn = document.querySelector('#webform6827347000001546003 button[type="submit"]');
+              if(submitBtn) submitBtn.setAttribute('disabled', true);
+              
+              // Create FormData with all fields mapped to Zoho fields
+              var formData = new FormData();
+              
+              // Add Zoho hidden fields
+              formData.append('xnQsjsdp', '7fe14ecc1055901858ecd38b1c19f3b3f39994b28c40cea152d2324b03cf0607');
+              formData.append('zc_gad', '');
+              formData.append('xmIwtLD', '678315dc464bc70db6cc804646a531b0e9c4c7238f042f8466ef9842870a629862854540cc4b1b34fd9820aca8af7a5e');
+              formData.append('actionType', 'TGVhZHM=');
+              formData.append('returnURL', 'null');
+              formData.append('aG9uZXlwb3Q', '');
+              
+              // Add Lead Source
+              var leadSourceField = document.getElementById('Lead_Source');
+              if(leadSourceField && leadSourceField.value) {
+                formData.append('Lead Source', leadSourceField.value);
+              }
+              
+              // Add First Name and Last Name (from split name)
+              var firstNameField = document.getElementById('First_Name_Hidden');
+              var lastNameField = document.getElementById('Last_Name_Hidden');
+              if(firstNameField && firstNameField.value) formData.append('First Name', firstNameField.value);
+              if(lastNameField && lastNameField.value) formData.append('Last Name', lastNameField.value);
+              
+              // Add Email
+              var emailField = document.getElementById('Email');
+              if(emailField && emailField.value) formData.append('Email', emailField.value);
+              
+              // Add Mobile
+              var mobileField = document.getElementById('Mobile');
+              if(mobileField && mobileField.value) formData.append('Mobile', mobileField.value);
+              
+              // Add Company
+              var companyField = document.getElementById('Company');
+              if(companyField && companyField.value) formData.append('Company', companyField.value);
+              
+              // Add Description
+              var descField = document.getElementById('Description');
+              if(descField && descField.value) formData.append('Description', descField.value);
+              
+              // Submit to Zoho .com.in domain
+              $.ajax({
+                url:'https://crm.zoho.com.in/crm/WebToLeadForm',
+                type:'POST',
+                data:formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                crossDomain: true,
+                success: function(response){
+                  console.log('Form submission successful:', response);
+                  
+                  // Hide error message if showing
+                  if(errorMsg) errorMsg.style.display = 'none';
+                  
+                  // Show success message
+                  if(successMsg) {
+                    successMsg.style.display = 'block';
+                    // Scroll to message
+                    setTimeout(function(){
+                      successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 100);
+                  }
+                  
+                  // Reset form
+                  var form = document.getElementById('webform6827347000001546003');
+                  if(form) {
+                    form.reset();
+                  }
+                  
+                  // Also show popup message if exists
+                  var splashinfodom = document.getElementById('wf_splash_info');
+                  var splashdom = document.getElementById('wf_splash');
+                  if(splashdom && splashinfodom) {
+                    splashinfodom.innerText = 'Thank you! We will contact you shortly.';
+                    splashdom.style.display = '';
+                    setTimeout(function(){
+                      splashdom.style.display = 'none';
+                    }, 5000);
+                  }
+                  
+                  // Re-enable submit button
+                  if(submitBtn) submitBtn.removeAttribute('disabled');
+                },
+                error: function(xhr, status, error){
+                  console.error('Form submission error:', status, error, xhr);
+                  
+                  // Hide success message if showing
+                  if(successMsg) successMsg.style.display = 'none';
+                  
+                  // Show error message
+                  if(errorMsg) {
+                    errorMsg.style.display = 'block';
+                    setTimeout(function(){
+                      errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 100);
+                  }
+                  
+                  // Re-enable submit button
+                  if(submitBtn) submitBtn.removeAttribute('disabled');
+                }
+              });
+              
+              return false;
+            });
+          }
+          
+          // Initialize when DOM is ready
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initForm);
+          } else {
+            initForm();
+          }
+        </script>
+
+        <!-- Do not remove this --- Analytics Tracking code starts -->
+        <script id="wf_anal" src="https://crm.zohopublic.com.in/crm/WebFormAnalyticsServeServlet?rid=104f27ed46e95cde0b45f0ad7eddd5a8257c0008d6fdb26bf5172acc42f8861176077d0eb775330b86a4cef5fbb0ddbdgid30623d8fd1a4a17fcbcea86b1d75b180a0333cacf25021f722bb98e29f210b33gid9baf6d88cc57e63be539701bc0297f0842ece7308b601c0f8e4ff6f5523e13cagid964623a162da11ce3ffe4a4bca6a7bada5f22f1080c63b8fe86cc9b88ea252cf&tw=468350ff94aa5526381c7420da575d1bd90d66cc4d5e64d70d7346708571ee3a"></script>
+        <!-- Do not remove this --- Analytics Tracking code ends. --><hr class="touch-divider" />
 
       <!-- Get In Touch Section -->
       <div class="touch-contact">

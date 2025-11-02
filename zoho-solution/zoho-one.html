@@ -505,17 +505,42 @@
                       cache: false,
                       contentType: false,
                       processData: false,
-                      success: function(data){
-                        var splashinfodom = document.getElementById('wf_splash_info');
-                        splashinfodom.innerText = data.actionvalue;
-                        var splashdom = document.getElementById('wf_splash');
-                        document.getElementById('webform6827347000001546003').reset();
-                        splashdom.style.display = '';
-                        setTimeout(function(){
-                          splashdom.style.display = 'none';
-                        }, 5000);
-                        document.querySelector('.crmWebToEntityForm .formsubmit').removeAttribute('disabled');
-                      },
+                crossDomain: true,
+                      success: function(response){
+                  console.log('Form submission successful:', response);
+                  
+                  // Hide error message if showing
+                  if(errorMsg) errorMsg.style.display = 'none';
+                  
+                  // Show success message
+                  if(successMsg) {
+                    successMsg.style.display = 'block';
+                    // Scroll to message
+                    setTimeout(function(){
+                      successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 100);
+                  }
+                  
+                  // Reset form
+                  var form = document.getElementById('webform6827347000001546003');
+                  if(form) {
+                    form.reset();
+                  }
+                  
+                  // Also show popup message if exists
+                  var splashinfodom = document.getElementById('wf_splash_info');
+                  var splashdom = document.getElementById('wf_splash');
+                  if(splashdom && splashinfodom) {
+                    splashinfodom.innerText = 'Thank you! We will contact you shortly.';
+                    splashdom.style.display = '';
+                    setTimeout(function(){
+                      splashdom.style.display = 'none';
+                    }, 5000);
+                  }
+                  
+                  // Re-enable submit button
+                  if(submitBtn) submitBtn.removeAttribute('disabled');
+                },
                       error: function(data){
                         alert('An error occurred. Please try again.');
                         document.querySelector('.crmWebToEntityForm .formsubmit').removeAttribute('disabled');
@@ -878,6 +903,17 @@
 
           <button type="submit">Submit</button>
         </form>
+        
+        <!-- Success Message - Shown after form submission (outside form) -->
+        <div id="form-success-message" style="display: none; margin-top: 20px; padding: 15px; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; color: #155724; text-align: center;">
+          <strong>Thank you for contacting us!</strong><br>
+          We will contact you shortly.
+        </div>
+        
+        <!-- Error Message - Shown if submission fails (outside form) -->
+        <div id="form-error-message" style="display: none; margin-top: 20px; padding: 15px; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px; color: #721c24; text-align: center;">
+          <strong>Error:</strong> Please try again or contact us directly.
+        </div>
       </div>
     </section>
 

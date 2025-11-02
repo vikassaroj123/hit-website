@@ -446,6 +446,17 @@
           ></textarea>
           <button type="submit" class="touch-btn">Submit</button>
         </form>
+        
+        <!-- Success Message - Shown after form submission (outside form) -->
+        <div id="form-success-message" style="display: none; margin-top: 20px; padding: 15px; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; color: #155724; text-align: center;">
+          <strong>Thank you for contacting us!</strong><br>
+          We will contact you shortly.
+        </div>
+        
+        <!-- Error Message - Shown if submission fails (outside form) -->
+        <div id="form-error-message" style="display: none; margin-top: 20px; padding: 15px; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px; color: #721c24; text-align: center;">
+          <strong>Error:</strong> Please try again or contact us directly.
+        </div>
 
         <script>
           function validateEmail6827347000001546003(){
@@ -551,7 +562,15 @@
             return true;
           }
 
-          $(document).ready(function(){
+          // Wait for jQuery to be available
+          function initForm() {
+            if (typeof jQuery === 'undefined') {
+              setTimeout(initForm, 100);
+              return;
+            }
+
+            var $ = jQuery;
+            
             // Set Lead Source on page load
             function setLeadSourceValue(){
               var path = window.location.pathname;
@@ -574,85 +593,146 @@
             }
             setLeadSourceValue();
 
+            // Hide messages initially
+            var successMsg = document.getElementById('form-success-message');
+            var errorMsg = document.getElementById('form-error-message');
+            if(successMsg) successMsg.style.display = 'none';
+            if(errorMsg) errorMsg.style.display = 'none';
+
             $('#webform6827347000001546003').submit(function(e){
-              var ismandatory = checkMandatory6827347000001546003();
               e.preventDefault();
-              if(ismandatory){
-                if(typeof _wfa_track != 'undefined' && _wfa_track.wfa_submit){
-                  _wfa_track.wfa_submit(e);
-                }
-                
-                // Create FormData with all fields mapped to Zoho fields
-                var formData = new FormData();
-                
-                // Add Zoho hidden fields
-                formData.append('xnQsjsdp', '7fe14ecc1055901858ecd38b1c19f3b3f39994b28c40cea152d2324b03cf0607');
-                formData.append('zc_gad', '');
-                formData.append('xmIwtLD', '678315dc464bc70db6cc804646a531b0e9c4c7238f042f8466ef9842870a629862854540cc4b1b34fd9820aca8af7a5e');
-                formData.append('actionType', 'TGVhZHM=');
-                formData.append('returnURL', 'null');
-                formData.append('aG9uZXlwb3Q', '');
-                
-                // Add Lead Source
-                var leadSourceField = document.getElementById('Lead_Source');
-                if(leadSourceField) formData.append('Lead Source', leadSourceField.value);
-                
-                // Add First Name and Last Name (from split name)
-                var firstNameField = document.getElementById('First_Name_Hidden');
-                var lastNameField = document.getElementById('Last_Name_Hidden');
-                if(firstNameField) formData.append('First Name', firstNameField.value);
-                if(lastNameField) formData.append('Last Name', lastNameField.value);
-                
-                // Add Email
-                var emailField = document.getElementById('Email');
-                if(emailField) formData.append('Email', emailField.value);
-                
-                // Add Mobile
-                var mobileField = document.getElementById('Mobile');
-                if(mobileField) formData.append('Mobile', mobileField.value);
-                
-                // Add Company
-                var companyField = document.getElementById('Company');
-                if(companyField) formData.append('Company', companyField.value);
-                
-                // Add Description
-                var descField = document.getElementById('Description');
-                if(descField) formData.append('Description', descField.value);
-                
-                // Submit to Zoho .com.in domain
-                $.ajax({
-                  url:'https://crm.zoho.com.in/crm/WebToLeadForm',
-                  type:'POST',
-                  data:formData,
-                  cache: false,
-                  contentType: false,
-                  processData: false,
-                  success: function(data){
-                    var splashinfodom = document.getElementById('wf_splash_info');
-                    if(splashinfodom) splashinfodom.innerText = data.actionvalue;
-                    var splashdom = document.getElementById('wf_splash');
-                    if(splashdom){
-                      document.getElementById('webform6827347000001546003').reset();
-                      splashdom.style.display = '';
-                      setTimeout(function(){
-                        splashdom.style.display = 'none';
-                      }, 5000);
-                    }
-                    var submitBtn = document.querySelector('#webform6827347000001546003 button[type="submit"]');
-                    if(submitBtn) submitBtn.removeAttribute('disabled');
-                  },
-                  error: function(data){
-                    alert('An error occurred. Please try again.');
-                    var submitBtn = document.querySelector('#webform6827347000001546003 button[type="submit"]');
-                    if(submitBtn) submitBtn.removeAttribute('disabled');
-                  }
-                });
-              } else {
+              
+              // Hide previous messages
+              if(successMsg) successMsg.style.display = 'none';
+              if(errorMsg) errorMsg.style.display = 'none';
+              
+              var ismandatory = checkMandatory6827347000001546003();
+              
+              if(!ismandatory){
                 var submitBtn = document.querySelector('#webform6827347000001546003 button[type="submit"]');
                 if(submitBtn) submitBtn.removeAttribute('disabled');
+                return false;
               }
+              
+              if(typeof _wfa_track != 'undefined' && _wfa_track.wfa_submit){
+                _wfa_track.wfa_submit(e);
+              }
+              
+              var submitBtn = document.querySelector('#webform6827347000001546003 button[type="submit"]');
+              if(submitBtn) submitBtn.setAttribute('disabled', true);
+              
+              // Create FormData with all fields mapped to Zoho fields
+              var formData = new FormData();
+              
+              // Add Zoho hidden fields
+              formData.append('xnQsjsdp', '7fe14ecc1055901858ecd38b1c19f3b3f39994b28c40cea152d2324b03cf0607');
+              formData.append('zc_gad', '');
+              formData.append('xmIwtLD', '678315dc464bc70db6cc804646a531b0e9c4c7238f042f8466ef9842870a629862854540cc4b1b34fd9820aca8af7a5e');
+              formData.append('actionType', 'TGVhZHM=');
+              formData.append('returnURL', 'null');
+              formData.append('aG9uZXlwb3Q', '');
+              
+              // Add Lead Source
+              var leadSourceField = document.getElementById('Lead_Source');
+              if(leadSourceField && leadSourceField.value) {
+                formData.append('Lead Source', leadSourceField.value);
+              }
+              
+              // Add First Name and Last Name (from split name)
+              var firstNameField = document.getElementById('First_Name_Hidden');
+              var lastNameField = document.getElementById('Last_Name_Hidden');
+              if(firstNameField && firstNameField.value) formData.append('First Name', firstNameField.value);
+              if(lastNameField && lastNameField.value) formData.append('Last Name', lastNameField.value);
+              
+              // Add Email
+              var emailField = document.getElementById('Email');
+              if(emailField && emailField.value) formData.append('Email', emailField.value);
+              
+              // Add Mobile
+              var mobileField = document.getElementById('Mobile');
+              if(mobileField && mobileField.value) formData.append('Mobile', mobileField.value);
+              
+              // Add Company
+              var companyField = document.getElementById('Company');
+              if(companyField && companyField.value) formData.append('Company', companyField.value);
+              
+              // Add Description
+              var descField = document.getElementById('Description');
+              if(descField && descField.value) formData.append('Description', descField.value);
+              
+              // Submit to Zoho .com.in domain
+              $.ajax({
+                url:'https://crm.zoho.com.in/crm/WebToLeadForm',
+                type:'POST',
+                data:formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                crossDomain: true,
+                success: function(response){
+                  console.log('Form submission successful:', response);
+                  
+                  // Hide error message if showing
+                  if(errorMsg) errorMsg.style.display = 'none';
+                  
+                  // Show success message
+                  if(successMsg) {
+                    successMsg.style.display = 'block';
+                    // Scroll to message
+                    setTimeout(function(){
+                      successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 100);
+                  }
+                  
+                  // Reset form
+                  var form = document.getElementById('webform6827347000001546003');
+                  if(form) {
+                    form.reset();
+                  }
+                  
+                  // Also show popup message if exists
+                  var splashinfodom = document.getElementById('wf_splash_info');
+                  var splashdom = document.getElementById('wf_splash');
+                  if(splashdom && splashinfodom) {
+                    splashinfodom.innerText = 'Thank you! We will contact you shortly.';
+                    splashdom.style.display = '';
+                    setTimeout(function(){
+                      splashdom.style.display = 'none';
+                    }, 5000);
+                  }
+                  
+                  // Re-enable submit button
+                  if(submitBtn) submitBtn.removeAttribute('disabled');
+                },
+                error: function(xhr, status, error){
+                  console.error('Form submission error:', status, error, xhr);
+                  
+                  // Hide success message if showing
+                  if(successMsg) successMsg.style.display = 'none';
+                  
+                  // Show error message
+                  if(errorMsg) {
+                    errorMsg.style.display = 'block';
+                    setTimeout(function(){
+                      errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 100);
+                  }
+                  
+                  // Re-enable submit button
+                  if(submitBtn) submitBtn.removeAttribute('disabled');
+                }
+              });
+              
+              return false;
             });
-          });
+          }
+          
+          // Initialize when DOM is ready
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initForm);
+          } else {
+            initForm();
+          }
         </script>
 
         <!-- Do not remove this --- Analytics Tracking code starts -->
