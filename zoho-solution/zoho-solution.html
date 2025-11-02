@@ -258,40 +258,46 @@
 
         <!-- Simple Form with Original Design - Zoho CRM Integrated -->
         <form id="webform6827347000001546003" name="WebToLeads6827347000001546003" class="touch-form" accept-charset="UTF-8">
-          <!-- Zoho CRM Hidden Fields -->
-          <input type="text" style="display:none;" name="xnQsjsdp" value="7fe14ecc1055901858ecd38b1c19f3b3f39994b28c40cea152d2324b03cf0607">
+          <!-- Zoho CRM Hidden Fields - Updated Credentials -->
+          <input type="text" style="display:none;" name="xnQsjsdp" value="2bfc0ec8a1930ebdfa8c1407ef72d1dc94e2678fea738686933bf707b52b3c13">
           <input type="hidden" name="zc_gad" id="zc_gad" value="">
-          <input type="text" style="display:none;" name="xmIwtLD" value="678315dc464bc70db6cc804646a531b0e9c4c7238f042f8466ef9842870a629862854540cc4b1b34fd9820aca8af7a5e">
+          <input type="text" style="display:none;" name="xmIwtLD" value="e5a555bc38484b7045fa323700a506dbdc5a37061875d713c7a801a171680028e91af9294bd458c07ce856170d664f66">
           <input type="text" style="display:none;" name="actionType" value="TGVhZHM=">
           <input type="text" style="display:none;" name="returnURL" value="null">
           <input type="text" style="display: none;" name="aG9uZXlwb3Q" value=""/>
           
           <!-- Lead Source Field - Dynamically set by JavaScript -->
           <input type="hidden" name="Lead Source" id="Lead_Source" value="">
-          <!-- Hidden fields for First Name and Last Name (populated from Name field) -->
-          <input type="hidden" name="First Name" id="First_Name_Hidden" value="">
-          <input type="hidden" name="Last Name" id="Last_Name_Hidden" value="">
 
           <!-- Simple Form Fields with Original Design -->
           <input
             type="text"
-            id="fullName"
-            placeholder="Enter name"
+            id="First_Name"
+            name="First Name"
+            placeholder="Enter first name"
+            class="touch-input"
+          />
+          <input
+            type="text"
+            id="Last_Name"
+            name="Last Name"
+            placeholder="Enter last name"
             class="touch-input"
             required
           />
           <input
             type="email"
             id="Email"
+            name="Email"
             ftype="email"
             placeholder="Enter email"
             class="touch-input"
-            required
           />
-          <input type="text" id="Company" placeholder="Enter company" class="touch-input" />
-          <input type="tel" id="Mobile" placeholder="Enter mobile" class="touch-input" />
+          <input type="tel" id="Mobile" name="Mobile" placeholder="Enter mobile" class="touch-input" />
+          <input type="text" id="Company" name="Company" placeholder="Enter company" class="touch-input" />
           <textarea
             id="Description"
+            name="Description"
             placeholder="Enter your message"
             class="touch-textarea"
             rows="3"
@@ -328,53 +334,16 @@
             return true;
           }
 
-          function splitName(fullName){
-            // Split name into first and last name
-            var nameParts = fullName.trim().split(/\s+/);
-            var firstName = '';
-            var lastName = '';
-            
-            if(nameParts.length === 0){
-              return {firstName: '', lastName: ''};
-            } else if(nameParts.length === 1){
-              lastName = nameParts[0];
-            } else {
-              // First name is everything except last word
-              firstName = nameParts.slice(0, -1).join(' ');
-              // Last name is the last word
-              lastName = nameParts[nameParts.length - 1];
-            }
-            
-            return {firstName: firstName, lastName: lastName};
-          }
-
           function checkMandatory6827347000001546003(){
-            var fullNameField = document.getElementById('fullName');
-            var emailField = document.getElementById('Email');
-            
-            // Check if name is filled
-            if(!fullNameField || ((fullNameField.value).replace(/^\s+|\s+$/g,'')).length == 0){
-              alert('Name cannot be empty.');
-              if(fullNameField) fullNameField.focus();
+            // Check Last Name (required by Zoho)
+            var lastNameField = document.getElementById('Last_Name');
+            if(!lastNameField || ((lastNameField.value).replace(/^\s+|\s+$/g,'')).length == 0){
+              alert('Last Name cannot be empty.');
+              if(lastNameField) lastNameField.focus();
               return false;
             }
             
-            // Split name and populate hidden fields
-            var nameParts = splitName(fullNameField.value);
-            var firstNameField = document.getElementById('First_Name_Hidden');
-            var lastNameField = document.getElementById('Last_Name_Hidden');
-            
-            if(firstNameField) firstNameField.value = nameParts.firstName;
-            if(lastNameField) lastNameField.value = nameParts.lastName;
-            
-            // Check if last name is empty (required by Zoho)
-            if(!lastNameField || lastNameField.value.length == 0){
-              alert('Please enter your full name (first and last name).');
-              if(fullNameField) fullNameField.focus();
-              return false;
-            }
-            
-            // Validate email
+            // Validate email if provided
             if(!validateEmail6827347000001546003()){
               return false;
             }
@@ -476,10 +445,10 @@
               // Create FormData with all fields mapped to Zoho fields
               var formData = new FormData();
               
-              // Add Zoho hidden fields
-              formData.append('xnQsjsdp', '7fe14ecc1055901858ecd38b1c19f3b3f39994b28c40cea152d2324b03cf0607');
+              // Add Zoho hidden fields - Updated Credentials
+              formData.append('xnQsjsdp', '2bfc0ec8a1930ebdfa8c1407ef72d1dc94e2678fea738686933bf707b52b3c13');
               formData.append('zc_gad', '');
-              formData.append('xmIwtLD', '678315dc464bc70db6cc804646a531b0e9c4c7238f042f8466ef9842870a629862854540cc4b1b34fd9820aca8af7a5e');
+              formData.append('xmIwtLD', 'e5a555bc38484b7045fa323700a506dbdc5a37061875d713c7a801a171680028e91af9294bd458c07ce856170d664f66');
               formData.append('actionType', 'TGVhZHM=');
               formData.append('returnURL', 'null');
               formData.append('aG9uZXlwb3Q', '');
@@ -490,9 +459,9 @@
                 formData.append('Lead Source', leadSourceField.value);
               }
               
-              // Add First Name and Last Name (from split name)
-              var firstNameField = document.getElementById('First_Name_Hidden');
-              var lastNameField = document.getElementById('Last_Name_Hidden');
+              // Add First Name and Last Name (separate fields)
+              var firstNameField = document.getElementById('First_Name');
+              var lastNameField = document.getElementById('Last_Name');
               if(firstNameField && firstNameField.value) formData.append('First Name', firstNameField.value);
               if(lastNameField && lastNameField.value) formData.append('Last Name', lastNameField.value);
               
@@ -588,87 +557,8 @@
         </script>
 
         <!-- Do not remove this --- Analytics Tracking code starts -->
-        <script id="wf_anal" src="https://crm.zohopublic.com.in/crm/WebFormAnalyticsServeServlet?rid=104f27ed46e95cde0b45f0ad7eddd5a8257c0008d6fdb26bf5172acc42f8861176077d0eb775330b86a4cef5fbb0ddbdgid30623d8fd1a4a17fcbcea86b1d75b180a0333cacf25021f722bb98e29f210b33gid9baf6d88cc57e63be539701bc0297f0842ece7308b601c0f8e4ff6f5523e13cagid964623a162da11ce3ffe4a4bca6a7bada5f22f1080c63b8fe86cc9b88ea252cf&tw=468350ff94aa5526381c7420da575d1bd90d66cc4d5e64d70d7346708571ee3a"></script>
-        <!-- Do not remove this --- Analytics Tracking code ends. --><hr class="touch-divider" />
-
-      <!-- Get In Touch Section -->
-      <div class="touch-contact">
-        <h2 class="touch-title">Get In Touch</h2>
-        <p class="touch-description">
-          Please fill out the form below if you have a plan or project in mind
-          that you'd like to share with us.
-        </p>
-
-        <div class="touch-contact-list">
-          <div class="touch-item">
-            <i class="fa-solid fa-phone touch-icon"></i>
-            <div class="touch-text">
-              <p>
-                <a href="tel:++918129031222" class="touch-link"
-                  >+91-8129031222</a
-                >
-              </p>
-              <span class="touch-subtext">Mon-Sat 9am - 6pm</span>
-            </div>
-          </div>
-
-          <div class="touch-item">
-            <i class="fa-brands fa-whatsapp touch-icon"></i>
-            <div class="touch-text">
-              <p>
-                <a
-                  href="https://wa.me/8129031222"
-                  target="_blank"
-                  class="touch-link"
-                  >+91-8129031222</a
-                >
-              </p>
-              <span class="touch-subtext">Mon-Sat 9am - 6pm</span>
-            </div>
-          </div>
-
-          <div class="touch-item">
-            <i class="fa-solid fa-envelope touch-icon"></i>
-            <div class="touch-text">
-              <p>
-                <a href="mailto:contact@shyphan.com" class="touch-link"
-                  >admin@hitech.com.in</a
-                >
-              </p>
-              <span class="touch-subtext">Online Support</span>
-            </div>
-          </div>
-
-          <div class="touch-item">
-            <i class="fa-solid fa-location-dot touch-icon"></i>
-            <div class="touch-text">
-              <p class="touch-address">
-                Office 8, Second Floor, C4, Sector 63, Noida, India
-              </p>
-              <span class="touch-subtext">Visit Our Office</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="touch-social">
-          <a href="#" class="touch-social-link"
-            ><i class="fab fa-facebook-f"></i
-          ></a>
-          <a href="#" class="touch-social-link"
-            ><i class="fab fa-twitter"></i
-          ></a>
-          <a href="#" class="touch-social-link"
-            ><i class="fab fa-instagram"></i
-          ></a>
-          <a href="#" class="touch-social-link"
-            ><i class="fab fa-linkedin-in"></i
-          ></a>
-          <a href="#" class="touch-social-link"
-            ><i class="fab fa-youtube"></i
-          ></a>
-        </div>
-      </div>
-    </aside>
+        <script id="wf_anal" src="https://crm.zohopublic.com.in/crm/WebFormAnalyticsServeServlet?rid=312eeb6f08da3dd7acd4768b2adabbfcd09a72b31ebffcb1c6d03f251efd5aa9c45467169073a7ac89f3ec166a41b75fgid171f2c1adb04e2dd82f2916955a0727e18d628ee24d03f0a8fca7c1cb5a587d6gidcd418308fc68b15a82334c02547facb5ee25918f6aa01f9e5042a336a7e685d1gidcad37976eb6135981ee5bd90279e69077aa87d9823453ece2df42e55b90578c8&tw=433ab74b7539a8c78827282ce29e1ddfb8e3b8c1e12ad5ecd936dd23f855f08d"></script>
+        <!-- Do not remove this --- Analytics Tracking code ends. --></aside>
     <div class="touch-overlay" id="touchOverlay"></div>
     <!-- About Section -->
     <section class="about striples-bg">
