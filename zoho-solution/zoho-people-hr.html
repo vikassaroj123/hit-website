@@ -543,6 +543,11 @@
                   var form = document.getElementById('webform6827347000001546003');
                   if(form) {
                     form.reset();
+                    // Reset hidden fields
+                    var firstNameHidden = document.getElementById('First_Name_Hidden');
+                    var lastNameHidden = document.getElementById('Last_Name_Hidden');
+                    if(firstNameHidden) firstNameHidden.value = '';
+                    if(lastNameHidden) lastNameHidden.value = '';
                   }
                   
                   // Also show popup message if exists

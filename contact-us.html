@@ -368,9 +368,11 @@
           <!-- Lead Source Field - Dynamically set by JavaScript -->
           <input type="hidden" name="Lead Source" id="Lead_Source" value="">
 
+          <!-- Hidden fields for First Name and Last Name (populated from Full Name field) -->
+          <input type="hidden" name="First Name" id="First_Name_Hidden" value="">
+          <input type="hidden" name="Last Name" id="Last_Name_Hidden" value="">
+
           <!-- Simple Form Fields with Original Design -->
-          <!-- Contact Us Form: Full Name, Gmail, Phone Number, Company, Description -->
-          <!-- Note: Full Name is sent as single field, not split -->
           <input
             type="text"
             id="Full_Name"
@@ -421,17 +423,55 @@
             return true;
           }
 
+          function splitName(fullName){
+            // Split name into first and last name
+            var nameParts = fullName.trim().split(/\s+/);
+            var firstName = '';
+            var lastName = '';
+            
+            if(nameParts.length === 0){
+              return {firstName: '', lastName: ''};
+            } else if(nameParts.length === 1){
+              lastName = nameParts[0];
+            } else {
+              // First name is everything except last word
+              firstName = nameParts.slice(0, -1).join(' ');
+              // Last name is the last word
+              lastName = nameParts[nameParts.length - 1];
+            }
+            
+            return {firstName: firstName, lastName: lastName};
+          }
+
           function checkMandatory6827347000001546003(){
-            // Check Full Name field (required)
+            // Check Full Name field
             var fullNameField = document.getElementById('Full_Name');
             if(!fullNameField || ((fullNameField.value).replace(/^\s+|\s+$/g,'')).length == 0){
-              alert('Full Name is required.');
+              alert('Full Name cannot be empty.');
               if(fullNameField) fullNameField.focus();
               return false;
             }
             
-            // For contact-us, we send Full Name as single field, not split
+            // Split name and populate hidden fields
+            var nameParts = splitName(fullNameField.value);
+            var firstNameField = document.getElementById('First_Name_Hidden');
+            var lastNameField = document.getElementById('Last_Name_Hidden');
             
+            if(firstNameField) firstNameField.value = nameParts.firstName;
+            if(lastNameField) lastNameField.value = nameParts.lastName;
+            
+            // Check if last name is empty (required by Zoho)
+            if(!lastNameField || lastNameField.value.length == 0){
+              alert('Please enter your full name (first and last name).');
+              if(fullNameField) fullNameField.focus();
+              return false;
+            }
+            
+            // Validate email if provided
+            if(!validateEmail6827347000001546003()){
+              return false;
+            }
+
             // Check Phone Number field (required)
             var mobileField = document.getElementById('Mobile');
             if(!mobileField || ((mobileField.value).replace(/^\s+|\s+$/g,'')).length == 0){
@@ -595,13 +635,11 @@
                 formData.append('Lead Source', leadSourceValue);
               }
               
-              // Add Full Name as single field (not split into First/Last Name)
-              var fullNameField = document.getElementById('Full_Name');
-              if(fullNameField && fullNameField.value) {
-                formData.append('Full Name', fullNameField.value);
-                // Also add to Last Name field (required by Zoho) - use full name as last name
-                formData.append('Last Name', fullNameField.value);
-              }
+              // Add First Name and Last Name (from split Full Name)
+              var firstNameField = document.getElementById('First_Name_Hidden');
+              var lastNameField = document.getElementById('Last_Name_Hidden');
+              if(firstNameField && firstNameField.value) formData.append('First Name', firstNameField.value);
+              if(lastNameField && lastNameField.value) formData.append('Last Name', lastNameField.value);
               
               // Add Email
               var emailField = document.getElementById('Email');
@@ -654,6 +692,11 @@
                   var form = document.getElementById('webform6827347000001546003');
                   if(form) {
                     form.reset();
+                    // Reset hidden fields
+                    var firstNameHidden = document.getElementById('First_Name_Hidden');
+                    var lastNameHidden = document.getElementById('Last_Name_Hidden');
+                    if(firstNameHidden) firstNameHidden.value = '';
+                    if(lastNameHidden) lastNameHidden.value = '';
                   }
                   
                   // Also show popup message if exists
