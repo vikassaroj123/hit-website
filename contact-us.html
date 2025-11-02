@@ -303,8 +303,6 @@
 
       <!-- Request a Quote Form - Zoho CRM Integration -->
       <div class="touch-quote">
-        <!-- Request a Quote Form - Zoho CRM Integration -->
-      <div class="touch-quote">
         <h2 class="touch-title">Request A Quote</h2>
         <!-- Zoho Success Message Box Styles -->
         <style>
@@ -375,10 +373,19 @@
           <input type="hidden" name="Last Name" id="Last_Name_Hidden" value="">
 
           <!-- Simple Form Fields with Original Design -->
+          <!-- Contact Us Form: Full Name, Mobile, Email, Company, Description -->
           <input
             type="text"
             id="Full_Name"
-            placeholder="Enter full name"
+            placeholder="Full Name"
+            class="touch-input"
+            required
+          />
+          <input
+            type="tel"
+            id="Mobile"
+            name="Mobile"
+            placeholder="Mobile"
             class="touch-input"
             required
           />
@@ -387,17 +394,25 @@
             id="Email"
             name="Email"
             ftype="email"
-            placeholder="Enter email"
+            placeholder="Gmail"
             class="touch-input"
+            required
           />
-          <input type="tel" id="Mobile" name="Mobile" placeholder="Enter mobile" class="touch-input" />
-          <input type="text" id="Company" name="Company" placeholder="Enter company" class="touch-input" />
+          <input
+            type="text"
+            id="Company"
+            name="Company"
+            placeholder="Company"
+            class="touch-input"
+            required
+          />
           <textarea
             id="Description"
             name="Description"
-            placeholder="Enter your message"
+            placeholder="Description"
             class="touch-textarea"
             rows="3"
+            required
           ></textarea>
           <button type="submit" class="touch-btn">Submit</button>
         </form>
@@ -451,10 +466,10 @@
           }
 
           function checkMandatory6827347000001546003(){
-            // Check Full Name field
+            // Check Full Name field (required)
             var fullNameField = document.getElementById('Full_Name');
             if(!fullNameField || ((fullNameField.value).replace(/^\s+|\s+$/g,'')).length == 0){
-              alert('Full Name cannot be empty.');
+              alert('Full Name is required.');
               if(fullNameField) fullNameField.focus();
               return false;
             }
@@ -474,8 +489,39 @@
               return false;
             }
             
-            // Validate email if provided
+            // Check Mobile field (required)
+            var mobileField = document.getElementById('Mobile');
+            if(!mobileField || ((mobileField.value).replace(/^\s+|\s+$/g,'')).length == 0){
+              alert('Mobile is required.');
+              if(mobileField) mobileField.focus();
+              return false;
+            }
+            
+            // Validate Email (required)
+            var emailField = document.getElementById('Email');
+            if(!emailField || ((emailField.value).replace(/^\s+|\s+$/g,'')).length == 0){
+              alert('Email is required.');
+              if(emailField) emailField.focus();
+              return false;
+            }
+            
             if(!validateEmail6827347000001546003()){
+              return false;
+            }
+            
+            // Check Company field (required)
+            var companyField = document.getElementById('Company');
+            if(!companyField || ((companyField.value).replace(/^\s+|\s+$/g,'')).length == 0){
+              alert('Company is required.');
+              if(companyField) companyField.focus();
+              return false;
+            }
+            
+            // Check Description field (required)
+            var descField = document.getElementById('Description');
+            if(!descField || ((descField.value).replace(/^\s+|\s+$/g,'')).length == 0){
+              alert('Description is required.');
+              if(descField) descField.focus();
               return false;
             }
 
