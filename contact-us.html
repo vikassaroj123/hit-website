@@ -372,7 +372,8 @@
           <input type="hidden" name="First Name" id="First_Name_Hidden" value="">
           <input type="hidden" name="Last Name" id="Last_Name_Hidden" value="">
 
-                    <!-- Simple Form Fields with Original Design -->
+          <!-- Simple Form Fields with Original Design -->
+          <!-- Contact Us Form: Full Name, Gmail, Phone Number, Company, Description -->
           <input
             type="text"
             id="Full_Name"
@@ -387,19 +388,19 @@
             ftype="email"
             placeholder="Gmail"
             class="touch-input"
+            required
           />
-          <input type="tel" id="Mobile" name="Mobile" placeholder="Mobile Number" class="touch-input" />
-          <input type="text" id="Company" name="Company" placeholder="Company Name" class="touch-input" />
+          <input type="tel" id="Mobile" name="Mobile" placeholder="Phone Number" class="touch-input" required />
+          <input type="text" id="Company" name="Company" placeholder="Company" class="touch-input" required />
           <textarea
             id="Description"
             name="Description"
             placeholder="Description"
             class="touch-textarea"
             rows="3"
+            required
           ></textarea>
           <button type="submit" class="touch-btn">Submit</button>
-        
-        
         </form>
         
         <!-- Success Message - Shown after form submission (outside form) -->
@@ -474,10 +475,10 @@
               return false;
             }
             
-            // Check Mobile field (required)
+            // Check Phone Number field (required)
             var mobileField = document.getElementById('Mobile');
             if(!mobileField || ((mobileField.value).replace(/^\s+|\s+$/g,'')).length == 0){
-              alert('Mobile is required.');
+              alert('Phone Number is required.');
               if(mobileField) mobileField.focus();
               return false;
             }
@@ -652,7 +653,8 @@
                 },
                 beforeSend: function(xhr) {
                   xhr.setRequestHeader('Accept', '*/*');
-                ,type:'POST',
+                },
+                type:'POST',
                 data:formData,
                 cache: false,
                 contentType: false,
