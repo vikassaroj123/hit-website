@@ -368,12 +368,9 @@
           <!-- Lead Source Field - Dynamically set by JavaScript -->
           <input type="hidden" name="Lead Source" id="Lead_Source" value="">
 
-          <!-- Hidden fields for First Name and Last Name (populated from Full Name field) -->
-          <input type="hidden" name="First Name" id="First_Name_Hidden" value="">
-          <input type="hidden" name="Last Name" id="Last_Name_Hidden" value="">
-
           <!-- Simple Form Fields with Original Design -->
           <!-- Contact Us Form: Full Name, Gmail, Phone Number, Company, Description -->
+          <!-- Note: Full Name is sent as single field, not split -->
           <input
             type="text"
             id="Full_Name"
@@ -390,8 +387,8 @@
             class="touch-input"
             required
           />
-          <input type="tel" id="Mobile" name="Mobile" placeholder="Phone Number" class="touch-input" required />
-          <input type="text" id="Company" name="Company" placeholder="Company" class="touch-input" required />
+          <input type="tel" id="Mobile" name="Mobile" placeholder="Phone" class="touch-input" required />
+          <input type="text" id="Company" name="Company" placeholder="Company Name" class="touch-input" required />
           <textarea
             id="Description"
             name="Description"
@@ -431,26 +428,6 @@
             return true;
           }
 
-          function splitName(fullName){
-            // Split name into first and last name
-            var nameParts = fullName.trim().split(/\s+/);
-            var firstName = '';
-            var lastName = '';
-            
-            if(nameParts.length === 0){
-              return {firstName: '', lastName: ''};
-            } else if(nameParts.length === 1){
-              lastName = nameParts[0];
-            } else {
-              // First name is everything except last word
-              firstName = nameParts.slice(0, -1).join(' ');
-              // Last name is the last word
-              lastName = nameParts[nameParts.length - 1];
-            }
-            
-            return {firstName: firstName, lastName: lastName};
-          }
-
           function checkMandatory6827347000001546003(){
             // Check Full Name field (required)
             var fullNameField = document.getElementById('Full_Name');
@@ -460,20 +437,7 @@
               return false;
             }
             
-            // Split name and populate hidden fields
-            var nameParts = splitName(fullNameField.value);
-            var firstNameField = document.getElementById('First_Name_Hidden');
-            var lastNameField = document.getElementById('Last_Name_Hidden');
-            
-            if(firstNameField) firstNameField.value = nameParts.firstName;
-            if(lastNameField) lastNameField.value = nameParts.lastName;
-            
-            // Check if last name is empty (required by Zoho)
-            if(!lastNameField || lastNameField.value.length == 0){
-              alert('Please enter your full name (first and last name).');
-              if(fullNameField) fullNameField.focus();
-              return false;
-            }
+            // For contact-us, we send Full Name as single field, not split
             
             // Check Phone Number field (required)
             var mobileField = document.getElementById('Mobile');
@@ -622,11 +586,13 @@
                 formData.append('Lead Source', leadSourceField.value);
               }
               
-              // Add First Name and Last Name (from split Full Name)
-              var firstNameField = document.getElementById('First_Name_Hidden');
-              var lastNameField = document.getElementById('Last_Name_Hidden');
-              if(firstNameField && firstNameField.value) formData.append('First Name', firstNameField.value);
-              if(lastNameField && lastNameField.value) formData.append('Last Name', lastNameField.value);
+              // Add Full Name as single field (not split into First/Last Name)
+              var fullNameField = document.getElementById('Full_Name');
+              if(fullNameField && fullNameField.value) {
+                formData.append('Full Name', fullNameField.value);
+                // Also add to Last Name field (required by Zoho) - use full name as last name
+                formData.append('Last Name', fullNameField.value);
+              }
               
               // Add Email
               var emailField = document.getElementById('Email');
@@ -796,19 +762,43 @@
             execute tailored marketing and sales solutions.
           </p>
 
-          <form class="contact-form">
+          <form id="contact-form-main" class="contact-form" accept-charset="UTF-8">
+            <!-- Zoho CRM Hidden Fields - Updated Credentials -->
+            <input type="text" style="display:none;" name="xnQsjsdp" value="2bfc0ec8a1930ebdfa8c1407ef72d1dc94e2678fea738686933bf707b52b3c13">
+            <input type="hidden" name="zc_gad" id="zc_gad_main" value="">
+            <input type="text" style="display:none;" name="xmIwtLD" value="e5a555bc38484b7045fa323700a506dbdc5a37061875d713c7a801a171680028e91af9294bd458c07ce856170d664f66">
+            <input type="text" style="display:none;" name="actionType" value="TGVhZHM=">
+            <input type="text" style="display:none;" name="returnURL" value="null">
+            <input type="text" style="display: none;" name="aG9uZXlwb3Q" value=""/>
+            
+            <!-- Lead Source Field -->
+            <input type="hidden" name="Lead Source" id="Lead_Source_Main" value="">
+            
             <div class="form-row">
-              <input type="text" placeholder="First Name *" required />
-              <input type="text" placeholder="Last Name *" required />
+              <input type="text" id="Full_Name_Main" placeholder="Full Name *" required />
             </div>
             <div class="form-row">
-              <input type="text" placeholder="Company *" required />
-              <input type="tel" placeholder="Phone *" required />
+              <input type="email" id="Email_Main" name="Email" ftype="email" placeholder="Gmail *" required />
+              <input type="tel" id="Mobile_Main" name="Mobile" placeholder="Phone *" required />
             </div>
             <div class="form-row">
-              <input type="email" placeholder="Email *" required />
+              <input type="text" id="Company_Main" name="Company" placeholder="Company Name *" required />
+            </div>
+            <div class="form-row">
+              <textarea id="Description_Main" name="Description" placeholder="Description *" rows="4" required></textarea>
             </div>
             <button type="submit" class="btn">Get in Touch</button>
+            
+            <!-- Success Message -->
+            <div id="contact-form-success" style="display: none; margin-top: 15px; padding: 12px; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; color: #155724; text-align: center;">
+              <strong>Thank you for contacting us!</strong><br>
+              We will contact you shortly.
+            </div>
+            
+            <!-- Error Message -->
+            <div id="contact-form-error" style="display: none; margin-top: 15px; padding: 12px; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px; color: #721c24; text-align: center;">
+              <strong>Error:</strong> Please try again or contact us directly.
+            </div>
           </form>
         </div>
 
@@ -1203,6 +1193,173 @@
       // Close buttons
       closeBtn.addEventListener("click", closePanel);
       overlay.addEventListener("click", closePanel);
+    </script>
+
+    <!-- Contact Form Main Submission Handler -->
+    <script>
+      function initContactFormMain() {
+        if (typeof jQuery === 'undefined') {
+          setTimeout(initContactFormMain, 100);
+          return;
+        }
+
+        var $ = jQuery;
+        var contactForm = document.getElementById('contact-form-main');
+        if (!contactForm) return;
+
+        // Set Lead Source for main contact form
+        function setMainLeadSource() {
+          var leadSourceValue = 'Vikas Saroj - Contact Us';
+          var leadSourceField = document.getElementById('Lead_Source_Main');
+          if(leadSourceField){
+            leadSourceField.value = leadSourceValue;
+          }
+        }
+        setMainLeadSource();
+
+        var successMsg = document.getElementById('contact-form-success');
+        var errorMsg = document.getElementById('contact-form-error');
+        if(successMsg) successMsg.style.display = 'none';
+        if(errorMsg) errorMsg.style.display = 'none';
+
+        $(contactForm).submit(function(e){
+          e.preventDefault();
+          
+          // Hide previous messages
+          if(successMsg) successMsg.style.display = 'none';
+          if(errorMsg) errorMsg.style.display = 'none';
+          
+          // Validate all fields
+          var fullNameField = document.getElementById('Full_Name_Main');
+          var emailField = document.getElementById('Email_Main');
+          var mobileField = document.getElementById('Mobile_Main');
+          var companyField = document.getElementById('Company_Main');
+          var descField = document.getElementById('Description_Main');
+          
+          if(!fullNameField || !fullNameField.value.trim()){
+            alert('Full Name is required.');
+            if(fullNameField) fullNameField.focus();
+            return false;
+          }
+          
+          if(!emailField || !emailField.value.trim()){
+            alert('Gmail is required.');
+            if(emailField) emailField.focus();
+            return false;
+          }
+          
+          // Validate email format
+          var emailVal = emailField.value;
+          var atpos = emailVal.indexOf('@');
+          var dotpos = emailVal.lastIndexOf('.');
+          if(atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length){
+            alert('Please enter a valid email address.');
+            emailField.focus();
+            return false;
+          }
+          
+          if(!mobileField || !mobileField.value.trim()){
+            alert('Phone is required.');
+            if(mobileField) mobileField.focus();
+            return false;
+          }
+          
+          if(!companyField || !companyField.value.trim()){
+            alert('Company Name is required.');
+            if(companyField) companyField.focus();
+            return false;
+          }
+          
+          if(!descField || !descField.value.trim()){
+            alert('Description is required.');
+            if(descField) descField.focus();
+            return false;
+          }
+          
+          var submitBtn = contactForm.querySelector('button[type="submit"]');
+          if(submitBtn) submitBtn.setAttribute('disabled', true);
+          
+          // Set Lead Source
+          setMainLeadSource();
+          
+          // Create FormData
+          var formData = new FormData();
+          formData.append('xnQsjsdp', '2bfc0ec8a1930ebdfa8c1407ef72d1dc94e2678fea738686933bf707b52b3c13');
+          formData.append('zc_gad', '');
+          formData.append('xmIwtLD', 'e5a555bc38484b7045fa323700a506dbdc5a37061875d713c7a801a171680028e91af9294bd458c07ce856170d664f66');
+          formData.append('actionType', 'TGVhZHM=');
+          formData.append('returnURL', 'null');
+          formData.append('aG9uZXlwb3Q', '');
+          
+          var leadSourceField = document.getElementById('Lead_Source_Main');
+          if(leadSourceField && leadSourceField.value) formData.append('Lead Source', leadSourceField.value);
+          
+          // Add Full Name as single field (not split)
+          if(fullNameField && fullNameField.value) {
+            formData.append('Full Name', fullNameField.value);
+            formData.append('Last Name', fullNameField.value); // Zoho requirement
+          }
+          
+          if(emailField && emailField.value) formData.append('Email', emailField.value);
+          if(mobileField && mobileField.value) formData.append('Mobile', mobileField.value);
+          if(companyField && companyField.value) formData.append('Company', companyField.value);
+          if(descField && descField.value) formData.append('Description', descField.value);
+          
+          // Submit to Zoho .com domain
+          $.ajax({
+            url:'https://crm.zoho.com/crm/WebToLeadForm',
+            type:'POST',
+            data:formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            crossDomain: true,
+            xhrFields: {
+              withCredentials: false
+            },
+            beforeSend: function(xhr) {
+              xhr.setRequestHeader('Accept', '*/*');
+            },
+            success: function(response, textStatus, xhr){
+              console.log('Contact form submission successful:', response);
+              
+              if(errorMsg) errorMsg.style.display = 'none';
+              if(successMsg) {
+                successMsg.style.display = 'block';
+                setTimeout(function(){
+                  successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+              }
+              
+              contactForm.reset();
+              setMainLeadSource();
+              
+              if(submitBtn) submitBtn.removeAttribute('disabled');
+            },
+            error: function(xhr, status, error){
+              console.error('Contact form submission error:', status, error, xhr);
+              
+              if(successMsg) successMsg.style.display = 'none';
+              if(errorMsg) {
+                errorMsg.style.display = 'block';
+                setTimeout(function(){
+                  errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+              }
+              
+              if(submitBtn) submitBtn.removeAttribute('disabled');
+            }
+          });
+          
+          return false;
+        });
+      }
+      
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initContactFormMain);
+      } else {
+        initContactFormMain();
+      }
     </script>
   </body>
 </html>
