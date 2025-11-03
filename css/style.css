@@ -3996,6 +3996,8 @@ p.artficial:before {
     -webkit-animation: floating2 7s infinite;
     -o-animation: floating2 7s infinite;
     animation: floating2 7s infinite;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .ico-bg1 {

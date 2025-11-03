@@ -173,6 +173,13 @@ body {
   width: 95%;
   margin: 0 auto;
   border-radius: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.getintoch > * {
+  position: relative;
+  z-index: 2;
 }
 
 .signup-content,
@@ -185,6 +192,17 @@ body {
   border-radius: 12px;
   padding: 40px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 10;
+  pointer-events: auto !important;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto !important;
 }
 
 .signup-content h3 {
@@ -238,6 +256,9 @@ body {
   border: 1px solid #ddd;
   background-color: #f8f8f8;
   transition: border-color 0.3s ease, background-color 0.3s ease;
+  pointer-events: auto !important;
+  z-index: 10;
+  position: relative;
 }
 
 .feedback-form input:focus,

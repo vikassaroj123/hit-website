@@ -679,7 +679,7 @@
               var descField = document.getElementById('Description');
               if(descField && descField.value) formData.append('Description', descField.value);
               
-              // Submit to Zoho .com domain (from .com.in website)
+              // Submit to Zoho .com domain
               $.ajax({
                 url:'https://crm.zoho.com/crm/WebToLeadForm',
                 type:'POST',
@@ -687,13 +687,6 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                crossDomain: true,
-                xhrFields: {
-                  withCredentials: false
-                },
-                beforeSend: function(xhr) {
-                  xhr.setRequestHeader('Accept', '*/*');
-                },
                 success: function(response, textStatus, xhr){
                   console.log('Form submission successful:', response);
                   
@@ -2120,7 +2113,7 @@
           if(mobileField && mobileField.value) formData.append('Mobile', mobileField.value);
           if(companyField && companyField.value) formData.append('Company', companyField.value);
           
-          // Submit to Zoho .com domain (from .com.in website)
+          // Submit to Zoho .com domain
           $.ajax({
             url:'https://crm.zoho.com/crm/WebToLeadForm',
             type:'POST',
@@ -2128,13 +2121,6 @@
             cache: false,
             contentType: false,
             processData: false,
-            crossDomain: true,
-            xhrFields: {
-              withCredentials: false
-            },
-            beforeSend: function(xhr) {
-              xhr.setRequestHeader('Accept', '*/*');
-            },
             success: function(response, textStatus, xhr){
               console.log('Popup form submission successful:', response);
               

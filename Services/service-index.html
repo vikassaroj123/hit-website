@@ -334,10 +334,10 @@
 
         <!-- Simple Form with Original Design - Zoho CRM Integrated -->
         <form id="webform6827347000001546003" name="WebToLeads6827347000001546003" class="touch-form" accept-charset="UTF-8">
-          <!-- Zoho CRM Hidden Fields - Updated Credentials -->
-          <input type="text" style="display:none;" name="xnQsjsdp" value="2bfc0ec8a1930ebdfa8c1407ef72d1dc94e2678fea738686933bf707b52b3c13">
+          <!-- Zoho CRM Hidden Fields -->
+          <input type="text" style="display:none;" name="xnQsjsdp" value="7fe14ecc1055901858ecd38b1c19f3b3f39994b28c40cea152d2324b03cf0607">
           <input type="hidden" name="zc_gad" id="zc_gad" value="">
-          <input type="text" style="display:none;" name="xmIwtLD" value="e5a555bc38484b7045fa323700a506dbdc5a37061875d713c7a801a171680028e91af9294bd458c07ce856170d664f66">
+          <input type="text" style="display:none;" name="xmIwtLD" value="678315dc464bc70db6cc804646a531b0e9c4c7238f042f8466ef9842870a629862854540cc4b1b34fd9820aca8af7a5e">
           <input type="text" style="display:none;" name="actionType" value="TGVhZHM=">
           <input type="text" style="display:none;" name="returnURL" value="null">
           <input type="text" style="display: none;" name="aG9uZXlwb3Q" value=""/>
@@ -387,6 +387,13 @@
         <!-- Error Message - Shown if submission fails (outside form) -->
         <div id="form-error-message" style="display: none; margin-top: 20px; padding: 15px; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px; color: #721c24; text-align: center;">
           <strong>Error:</strong> Please try again or contact us directly.
+        </div>
+
+        
+        <!-- Sidebar Form Success Message -->
+        <div id="sidebar-success-message" style="display: none; margin-top: 15px; padding: 12px; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; color: #155724; text-align: center; font-size: 14px;">
+          <strong>Thank you for contacting us!</strong><br>
+          Someone will contact you shortly.
         </div>
 
         <script>
@@ -550,10 +557,10 @@
               // Create FormData with all fields mapped to Zoho fields
               var formData = new FormData();
               
-              // Add Zoho hidden fields - Updated Credentials
-              formData.append('xnQsjsdp', '2bfc0ec8a1930ebdfa8c1407ef72d1dc94e2678fea738686933bf707b52b3c13');
+              // Add Zoho hidden fields
+              formData.append('xnQsjsdp', '7fe14ecc1055901858ecd38b1c19f3b3f39994b28c40cea152d2324b03cf0607');
               formData.append('zc_gad', '');
-              formData.append('xmIwtLD', 'e5a555bc38484b7045fa323700a506dbdc5a37061875d713c7a801a171680028e91af9294bd458c07ce856170d664f66');
+              formData.append('xmIwtLD', '678315dc464bc70db6cc804646a531b0e9c4c7238f042f8466ef9842870a629862854540cc4b1b34fd9820aca8af7a5e');
               formData.append('actionType', 'TGVhZHM=');
               formData.append('returnURL', 'null');
               formData.append('aG9uZXlwb3Q', '');
@@ -605,7 +612,7 @@
               var descField = document.getElementById('Description');
               if(descField && descField.value) formData.append('Description', descField.value);
               
-              // Submit to Zoho .com domain (from .com.in website)
+              // Submit to Zoho .com domain
               $.ajax({
                 url:'https://crm.zoho.com/crm/WebToLeadForm',
                 type:'POST',
@@ -613,55 +620,45 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                crossDomain: true,
-                xhrFields: {
-                  withCredentials: false
-                },
-                beforeSend: function(xhr) {
-                  xhr.setRequestHeader('Accept', '*/*');
-                },
-                success: function(response, textStatus, xhr){
-                  console.log('Form submission successful:', response);
+                success: function(data){
+                  // Hide popup message - don't show it
+                  var splashdom = document.getElementById('wf_splash');
+                  if(splashdom){
+                    splashdom.style.display = 'none';
+                  }
                   
-                  // Hide error message if showing
-                  if(errorMsg) errorMsg.style.display = 'none';
-                  
-                  // Show success message
-                  if(successMsg) {
-                    successMsg.style.display = 'block';
-                    // Scroll to message
+                  // Show success message below sidebar form
+                  var sidebarMsg = document.getElementById('sidebar-success-message');
+                  if(sidebarMsg) {
+                    sidebarMsg.style.display = 'block';
+                    // Scroll to message smoothly
                     setTimeout(function(){
-                      successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                      sidebarMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     }, 100);
                   }
                   
                   // Reset form
-                  var form = document.getElementById('webform6827347000001546003');
-                  if(form) {
-                    form.reset();
-                    // Reset hidden fields
-                    var firstNameHidden = document.getElementById('First_Name_Hidden');
-                    var lastNameHidden = document.getElementById('Last_Name_Hidden');
-                    if(firstNameHidden) firstNameHidden.value = '';
-                    if(lastNameHidden) lastNameHidden.value = '';
-                  }
+                  document.getElementById('webform6827347000001546003').reset();
+                  // Reset hidden fields
+                  var firstNameHidden = document.getElementById('First_Name_Hidden');
+                  var lastNameHidden = document.getElementById('Last_Name_Hidden');
+                  if(firstNameHidden) firstNameHidden.value = '';
+                  if(lastNameHidden) lastNameHidden.value = '';
                   
-                  // Also show popup message if exists
-                  var splashinfodom = document.getElementById('wf_splash_info');
-                  var splashdom = document.getElementById('wf_splash');
-                  if(splashdom && splashinfodom) {
-                    splashinfodom.innerText = 'Thank you! We will contact you shortly.';
-                    splashdom.style.display = '';
-                    setTimeout(function(){
-                      splashdom.style.display = 'none';
-                    }, 5000);
+                  // Hide error message if showing
+                  if(errorMsg) errorMsg.style.display = 'none';
+                  
+                  // Hide old success message if exists
+                  if(successMsg) {
+                    successMsg.style.display = 'none';
                   }
                   
                   // Re-enable submit button
+                  var submitBtn = document.querySelector('#webform6827347000001546003 button[type="submit"]');
                   if(submitBtn) submitBtn.removeAttribute('disabled');
                 },
-                error: function(xhr, status, error){
-                  console.error('Form submission error:', status, error, xhr);
+                error: function(data){
+                  alert('An error occurred. Please try again.');
                   
                   // Hide success message if showing
                   if(successMsg) successMsg.style.display = 'none';
@@ -669,12 +666,10 @@
                   // Show error message
                   if(errorMsg) {
                     errorMsg.style.display = 'block';
-                    setTimeout(function(){
-                      errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }, 100);
                   }
                   
                   // Re-enable submit button
+                  var submitBtn = document.querySelector('#webform6827347000001546003 button[type="submit"]');
                   if(submitBtn) submitBtn.removeAttribute('disabled');
                 }
               });
@@ -978,56 +973,274 @@
 
           <!-- Feedback Form Section -->
           <div class="form-container">
-            <form action="#" method="POST" class="feedback-form">
+            <form id="feedback-form-main" action="javascript:void(0);" method="POST" class="feedback-form" onsubmit="return false;">
               <h3>Get in Touch</h3>
 
-              <label for="name">Full Name</label>
+              <label for="feedback-name">Full Name</label>
               <input
                 type="text"
-                id="name"
+                id="feedback-name"
                 name="name"
                 required
                 placeholder="First Last"
+                style="pointer-events: auto !important; position: relative; z-index: 100;"
               />
 
-              <label for="email">Email Address</label>
+              <label for="feedback-email">Email Address</label>
               <input
                 type="email"
-                id="email"
+                id="feedback-email"
                 name="email"
                 required
                 placeholder="Your Email"
+                style="pointer-events: auto !important; position: relative; z-index: 100;"
               />
 
-              <label for="phone">Phone Number</label>
+              <label for="feedback-phone">Phone Number</label>
               <input
                 type="tel"
-                id="phone"
+                id="feedback-phone"
                 name="phone"
                 required
                 placeholder="Your Phone Number"
+                style="pointer-events: auto !important; position: relative; z-index: 100;"
               />
 
-              <label for="company">Company Name</label>
+              <label for="feedback-company">Company Name</label>
               <input
                 type="text"
-                id="company"
+                id="feedback-company"
                 name="company"
                 required
                 placeholder="Company Name"
+                style="pointer-events: auto !important; position: relative; z-index: 100;"
               />
 
-              <label for="message">Your Message</label>
+              <label for="feedback-message">Your Message</label>
               <textarea
-                id="message"
+                id="feedback-message"
                 name="message"
                 required
                 placeholder="Write your message here"
+                style="pointer-events: auto !important; position: relative; z-index: 100;"
               ></textarea>
 
-              <button type="submit">Submit</button>
-            </form>
-          </div>
+            <button type="submit">Submit</button>
+          </form>
+        
+        <!-- Simple Success Message Below Form -->
+        <div id="feedback-success-message" style="display: none; margin-top: 20px; padding: 15px; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; color: #155724; text-align: center;">
+          <strong>Thank you for contacting us!</strong><br>
+          Someone will contact you shortly.
+        </div>
+        
+        <!-- Zoho Success Message Box Styles -->
+            <style>
+              .wf_customMessageBox_feedback{
+                font-family: Arial, Helvetica, sans-serif;
+                color: #132C14;
+                background: #F5FAF5;
+                box-shadow: 0 2px 6px 0 rgba(0,0,0,0.25);
+                max-width: 90%;
+                width: max-content;
+                word-break: break-word;
+                z-index: 11000;
+                border-radius: 6px;
+                border: 1px solid #A9D3AB;
+                min-width: 100px;
+                padding: 10px 15px;
+                display: flex;
+                align-items: center;
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translate(-50%, 0);
+              }
+              .wf_customCircle_feedback{
+                position: relative;
+                background-color: #12AA67;
+                border-radius: 100%;
+                width: 20px;
+                height: 20px;
+                flex: none;
+                margin-right: 7px;
+              }
+              .wf_customCheckMark_feedback{
+                box-sizing: unset !important;
+                position: absolute;
+                transform: rotate(45deg)translate(-50%, -50%);
+                left: 6px;
+                top: 9px;
+                height: 8px;
+                width: 3px;
+                border-bottom: 2px solid #fff;
+                border-right: 2px solid #fff;
+              }
+            </style>
+
+      </div>
+      
+      <!-- Success Message Box - Outside form container for proper display -->
+      <div class="wf_customMessageBox_feedback" id="wf_splash_feedback" style="display:none">
+        <div class="wf_customCircle_feedback">
+          <div class="wf_customCheckMark_feedback"></div>
+        </div>
+        <span id="wf_splash_info_feedback"></span>
+      </div>
+          
+          <script>
+            function initFeedbackForm() {
+              if (typeof jQuery === 'undefined') {
+                setTimeout(initFeedbackForm, 100);
+                return;
+              }
+
+              var $ = jQuery;
+              
+              $('#feedback-form-main').off('submit').on('submit', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Get form values
+                var fullName = $('#feedback-name').val().trim();
+                var email = $('#feedback-email').val().trim();
+                var phone = $('#feedback-phone').val().trim();
+                var company = $('#feedback-company').val().trim();
+                var message = $('#feedback-message').val().trim();
+                
+                // Validate Full Name
+                if(!fullName || fullName.length == 0){
+                  alert('Full Name cannot be empty.');
+                  $('#feedback-name').focus();
+                  return false;
+                }
+                
+                // Validate Email
+                if(email && email.length > 0){
+                  var atpos = email.indexOf('@');
+                  var dotpos = email.lastIndexOf('.');
+                  if(atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length){
+                    alert('Please enter a valid email address.');
+                    $('#feedback-email').focus();
+                    return false;
+                  }
+                }
+                
+                if(!email || email.length == 0){
+                  alert('Please enter your email address.');
+                  $('#feedback-email').focus();
+                  return false;
+                }
+                
+                // Split name into first and last (same logic as sidebar form)
+                function splitName(fullName){
+                  var nameParts = fullName.trim().split(/\s+/);
+                  var firstName = '';
+                  var lastName = '';
+                  
+                  if(nameParts.length === 0){
+                    return {firstName: '', lastName: ''};
+                  } else if(nameParts.length === 1){
+                    lastName = nameParts[0];
+                  } else {
+                    firstName = nameParts.slice(0, -1).join(' ');
+                    lastName = nameParts[nameParts.length - 1];
+                  }
+                  
+                  return {firstName: firstName, lastName: lastName};
+                }
+                
+                var nameParts = splitName(fullName);
+                var firstName = nameParts.firstName;
+                var lastName = nameParts.lastName;
+                
+                if(!lastName || lastName.length == 0){
+                  alert('Please enter your full name (first and last name).');
+                  $('#feedback-name').focus();
+                  return false;
+                }
+                
+                // Get page name for lead source
+                var path = window.location.pathname;
+                var filename = path.split('/').pop() || 'index';
+                filename = filename.replace(/\.html$/, '');
+                
+                if(filename === 'index' || filename === '' || filename === '/') {
+                  filename = 'Home';
+                } else {
+                  filename = filename.split('-').map(function(word){
+                    return word.charAt(0).toUpperCase() + word.slice(1);
+                  }).join(' ');
+                }
+                
+                var leadSourceValue = 'Vikas HITech - ' + filename;
+                
+                // Disable submit button
+                var submitBtn = $(this).find('button[type="submit"]');
+                submitBtn.prop('disabled', true);
+                
+                // Create FormData
+                var formData = new FormData();
+                formData.append('xnQsjsdp', '7fe14ecc1055901858ecd38b1c19f3b3f39994b28c40cea152d2324b03cf0607');
+                formData.append('zc_gad', '');
+                formData.append('xmIwtLD', '678315dc464bc70db6cc804646a531b0e9c4c7238f042f8466ef9842870a629862854540cc4b1b34fd9820aca8af7a5e');
+                formData.append('actionType', 'TGVhZHM=');
+                formData.append('returnURL', 'null');
+                formData.append('aG9uZXlwb3Q', '');
+                formData.append('Lead Source', leadSourceValue);
+                formData.append('First Name', firstName);
+                formData.append('Last Name', lastName);
+                if(email) formData.append('Email', email);
+                if(phone) formData.append('Mobile', phone);
+                if(company) formData.append('Company', company);
+                if(message) formData.append('Description', message);
+                
+                // Submit to Zoho
+                $.ajax({
+                  url:'https://crm.zoho.com/crm/WebToLeadForm',
+                  type:'POST',
+                  data:formData,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  success: function(data){
+                    // Hide popup message - don't show it
+                var splashdom = document.getElementById('wf_splash_feedback');
+                if(splashdom){
+                  splashdom.style.display = 'none';
+                }
+                
+                // Show simple message below bottom form only
+                    var simpleMsg = document.getElementById('feedback-success-message');
+                    if(simpleMsg) {
+                      simpleMsg.style.display = 'block';
+                      // Scroll to message
+                      setTimeout(function(){
+                        simpleMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                      }, 100);
+                    }
+                    
+                    // Reset form
+                    $('#feedback-form-main')[0].reset();
+                    submitBtn.prop('disabled', false);
+                  },
+                  error: function(data){
+                    alert('An error occurred. Please try again.');
+                    submitBtn.prop('disabled', false);
+                  }
+                });
+                
+                return false;
+              });
+            }
+            
+            // Initialize when DOM is ready
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', initFeedbackForm);
+            } else {
+              initFeedbackForm();
+            }
+          </script>
         </div>
       </div>
     </section>

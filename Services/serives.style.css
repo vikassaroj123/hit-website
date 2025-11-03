@@ -438,11 +438,17 @@ p {
   border-radius: 12px;
   padding: 40px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 10;
+  pointer-events: auto !important;
 }
 
 .feedback-form {
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto !important;
 }
 
 .feedback-form h3 {
@@ -468,6 +474,9 @@ p {
   border: 1px solid #ddd;
   background-color: #f8f8f8;
   transition: border-color 0.3s ease, background-color 0.3s ease;
+  pointer-events: auto !important;
+  z-index: 10;
+  position: relative;
 }
 
 .feedback-form input:focus,
