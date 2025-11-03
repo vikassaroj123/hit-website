@@ -119,7 +119,7 @@
                   <div class="call-button touchOpenTrigger">
                     <i class="fa-solid fa-phone"></i>
                   </div>
-                  <a href="/contact-us.html" class="btn book-call-btn"
+                  <a href="../contact-us.html" class="btn book-call-btn"
                     >Book Discovery Call</a
                   >
                 </div>
@@ -129,7 +129,7 @@
               <div class="call-button touchOpenTrigger">
                 <i class="fa-solid fa-phone"></i>
               </div>
-              <a href="#" class="btn book-call-btn">Book Discovery Call</a>
+              <a href="../contact-us.html" class="btn book-call-btn">Book Discovery Call</a>
             </div>
 
             <!-- Nav End -->
@@ -534,15 +534,36 @@
                 contentType: false,
                 processData: false,
                 success: function(data){
-                  }, 5000);
+                  // Hide popup message - don't show it
+                  var splashdom = document.getElementById('wf_splash');
+                  if(splashdom){
+                    splashdom.style.display = 'none';
                   }
+                  
+                  // Show success message below sidebar form
+                  var sidebarMsg = document.getElementById('sidebar-success-message');
+                  if(sidebarMsg) {
+                    sidebarMsg.style.display = 'block';
+                    // Scroll to message smoothly
+                    setTimeout(function(){
+                      sidebarMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 100);
+                  }
+                  
+                  // Reset form
+                  document.getElementById('webform6827347000001546003').reset();
+                  // Reset hidden fields
+                  var firstNameHidden = document.getElementById('First_Name_Hidden');
+                  var lastNameHidden = document.getElementById('Last_Name_Hidden');
+                  if(firstNameHidden) firstNameHidden.value = '';
+                  if(lastNameHidden) lastNameHidden.value = '';
                   
                   // Hide error message if showing
                   if(errorMsg) errorMsg.style.display = 'none';
                   
-                  // Show success message
+                  // Hide old success message if exists
                   if(successMsg) {
-                    successMsg.style.display = 'block';
+                    successMsg.style.display = 'none';
                   }
                   
                   // Re-enable submit button
