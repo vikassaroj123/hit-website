@@ -9,6 +9,23 @@
       gtag('js', new Date());
       gtag('config', 'AW-17470273516');
     </script>
+    <!-- Event snippet for Submit lead form (4) conversion page In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+          'send_to': 'AW-17470273516/w3YeCN-Xw7kbEOzvvIpB',
+          'value': 1.0,
+          'currency': 'INR',
+          'event_callback': callback
+        });
+        return false;
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta name="description" content="Learn about HITech Pvt Ltd - Zoho Authorised Partner with 10+ years of expertise in Zoho implementation, integration, and digital transformation. Serving clients across India, Middle East & Africa with certified Zoho solutions." />
     <meta name="keywords" content="Zoho Authorised Partner, About HITech, Zoho Partner India, Zoho Implementation Experts, Business Solutions Provider, CRM ERP Services, MEA Region" />

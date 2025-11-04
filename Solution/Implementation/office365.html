@@ -9,6 +9,23 @@
       gtag('js', new Date());
       gtag('config', 'AW-17470273516');
     </script>
+    <!-- Event snippet for Submit lead form (4) conversion page In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+          'send_to': 'AW-17470273516/w3YeCN-Xw7kbEOzvvIpB',
+          'value': 1.0,
+          'currency': 'INR',
+          'event_callback': callback
+        });
+        return false;
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta name="description" content="Office 365 Implementation Services by Zoho Authorised Partner HITech Pvt Ltd. Expert Office 365 setup, migration, and configuration. Professional Office 365 services across India, Middle East & Africa." />
     <meta name="keywords" content="Office 365 Implementation, Microsoft Office 365, Zoho Authorised Partner, Office 365 Setup, Office 365 Migration, Office 365 Configuration, Microsoft Office Services, Cloud Productivity, India, MEA" />

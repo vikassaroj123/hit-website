@@ -9,6 +9,23 @@
       gtag('js', new Date());
       gtag('config', 'AW-17470273516');
     </script>
+    <!-- Event snippet for Submit lead form (4) conversion page In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+          'send_to': 'AW-17470273516/w3YeCN-Xw7kbEOzvvIpB',
+          'value': 1.0,
+          'currency': 'INR',
+          'event_callback': callback
+        });
+        return false;
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta name="description" content="Microsoft Dynamics 365 Implementation by Zoho Authorised Partner HITech Pvt Ltd. Expert Microsoft 365 and Dynamics 365 implementation, setup, and configuration. Professional Microsoft services across India, Middle East & Africa." />
     <meta name="keywords" content="Microsoft Dynamics 365, MS365 Implementation, Zoho Authorised Partner, Microsoft 365 Setup, Dynamics 365 Configuration, Microsoft Integration, Enterprise Solutions, Microsoft Services, India, MEA" />

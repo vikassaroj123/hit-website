@@ -9,6 +9,23 @@
       gtag('js', new Date());
       gtag('config', 'AW-17470273516');
     </script>
+    <!-- Event snippet for Submit lead form (4) conversion page In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+          'send_to': 'AW-17470273516/w3YeCN-Xw7kbEOzvvIpB',
+          'value': 1.0,
+          'currency': 'INR',
+          'event_callback': callback
+        });
+        return false;
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta name="description" content="HITech Pvt Ltd - Zoho Authorised Partner offering comprehensive Zoho solutions including CRM, ERP, HRMS, Finance, and Business Automation. Certified Zoho Partner serving India, Middle East & Africa. Expert implementation, integration, and support services." />
     <meta name="keywords" content="Zoho Authorised Partner, Zoho Partner, Zoho CRM, Zoho Books, Zoho One, Zoho Implementation, Zoho Integration, CRM Solutions, ERP Solutions, Business Automation, India, MEA, HITech" />
@@ -697,6 +714,11 @@
                 processData: false,
                 success: function(response, textStatus, xhr){
                   console.log('Form submission successful:', response);
+                  
+                  // Track conversion
+                  if(typeof gtag_report_conversion === 'function') {
+                    gtag_report_conversion();
+                  }
                   
                   // Hide error message if showing
                   if(errorMsg) errorMsg.style.display = 'none';

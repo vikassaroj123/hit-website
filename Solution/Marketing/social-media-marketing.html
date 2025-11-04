@@ -9,6 +9,23 @@
       gtag('js', new Date());
       gtag('config', 'AW-17470273516');
     </script>
+    <!-- Event snippet for Submit lead form (4) conversion page In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+          'send_to': 'AW-17470273516/w3YeCN-Xw7kbEOzvvIpB',
+          'value': 1.0,
+          'currency': 'INR',
+          'event_callback': callback
+        });
+        return false;
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta name="description" content="Social Media Marketing Services by Zoho Authorised Partner HITech Pvt Ltd. Social media management, content creation, and social media strategy. Expert social media marketing solutions across India, Middle East & Africa." />
     <meta name="keywords" content="Social Media Marketing, SMM Services, Zoho Authorised Partner, Social Media Management, Content Marketing, Social Media Strategy, Social Media Advertising, Digital Marketing, India, MEA" />
