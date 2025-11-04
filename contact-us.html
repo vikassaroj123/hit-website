@@ -1474,6 +1474,11 @@
             success: function(response, textStatus, xhr){
               console.log('Contact form submission successful:', response);
               
+              // Track conversion
+              if(typeof gtag_report_conversion === 'function') {
+                gtag_report_conversion();
+              }
+              
               if(errorMsg) errorMsg.style.display = 'none';
               if(successMsg) {
                 successMsg.style.display = 'block';
