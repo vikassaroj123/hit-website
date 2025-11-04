@@ -1,4 +1,29 @@
 <!-- Simple Form Template with Zoho CRM Integration -->
+<!-- Google tag (gtag.js) - Add this to your page if not already included -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17470273516"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17470273516');
+</script>
+<!-- Event snippet for Submit lead form (4) conversion page -->
+<script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion', {
+      'send_to': 'AW-17470273516/w3YeCN-Xw7kbEOzvvIpB',
+      'value': 1.0,
+      'currency': 'INR',
+      'event_callback': callback
+    });
+    return false;
+  }
+</script>
 <!-- Zoho Success Message Box Styles -->
 <style>
   .wf_customMessageBox{
@@ -274,6 +299,11 @@
           contentType: false,
           processData: false,
           success: function(data){
+            // Track conversion
+            if(typeof gtag_report_conversion === 'function') {
+              gtag_report_conversion();
+            }
+            
             var splashinfodom = document.getElementById('wf_splash_info');
             if(splashinfodom) splashinfodom.innerText = data.actionvalue;
             var splashdom = document.getElementById('wf_splash');

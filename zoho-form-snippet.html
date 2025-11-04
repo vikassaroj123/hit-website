@@ -343,6 +343,11 @@
                 contentType: false,
                 processData: false,
                 success: function(data){
+                  // Track conversion
+                  if(typeof gtag_report_conversion === 'function') {
+                    gtag_report_conversion();
+                  }
+                  
                   var splashinfodom = document.getElementById('wf_splash_info');
                   splashinfodom.innerText = data.actionvalue;
                   var splashdom = document.getElementById('wf_splash');

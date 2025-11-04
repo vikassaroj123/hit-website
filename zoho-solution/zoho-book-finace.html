@@ -562,6 +562,11 @@
                 contentType: false,
                 processData: false,
                 success: function(data){
+                  // Track conversion
+                  if(typeof gtag_report_conversion === 'function') {
+                    gtag_report_conversion();
+                  }
+                  
                   // Hide popup message - don't show it
                   var splashdom = document.getElementById('wf_splash');
                   if(splashdom){

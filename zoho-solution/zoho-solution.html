@@ -576,7 +576,21 @@
                 contentType: false,
                 processData: false,
                 success: function(data){
-                  }, 5000);
+                  // Track conversion
+                  if(typeof gtag_report_conversion === 'function') {
+                    gtag_report_conversion();
+                  }
+                  
+                  // Show splash message if exists
+                  var splashinfodom = document.getElementById('wf_splash_info');
+                  var splashdom = document.getElementById('wf_splash');
+                  if(splashdom && splashinfodom) {
+                    splashinfodom.innerText = data.actionvalue || 'Thank you for your submission!';
+                    document.getElementById('webform6827347000001546003').reset();
+                    splashdom.style.display = '';
+                    setTimeout(function(){
+                      splashdom.style.display = 'none';
+                    }, 5000);
                   }
                   
                   // Hide error message if showing
